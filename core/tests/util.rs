@@ -37,7 +37,7 @@ pub fn test_network(cfg: NetworkConfig) -> TestNetwork {
         .multiplex(mplex::MplexConfig::new())
         .boxed();
 
-    TestNetwork::new(transport, local_public_key.into(), cfg)
+    TestNetwork::new(transport, PeerId::from_public_key(local_public_key), cfg)
 }
 
 pub struct TestHandler();

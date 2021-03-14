@@ -246,6 +246,13 @@ pub enum NetworkBehaviourAction<TInEvent, TOutEvent> {
         condition: DialPeerCondition,
     },
 
+    /// Instructs the swarm to close connection the peer with `PeerId`.
+    /// The connection status flag will be update with disconnect timeout
+    DisconnectPeer {
+        /// The peer to try reach.
+        peer_id: PeerId,
+    },
+
     /// Instructs the `Swarm` to send an event to the handler dedicated to a
     /// connection with a peer.
     ///
@@ -297,6 +304,8 @@ impl<TInEvent, TOutEvent> NetworkBehaviourAction<TInEvent, TOutEvent> {
                 NetworkBehaviourAction::DialAddress { address },
             NetworkBehaviourAction::DialPeer { peer_id, condition } =>
                 NetworkBehaviourAction::DialPeer { peer_id, condition },
+            NetworkBehaviourAction::DisconnectPeer { peer_id } =>
+                NetworkBehaviourAction::DisconnectPeer { peer_id },
             NetworkBehaviourAction::NotifyHandler { peer_id, handler, event } =>
                 NetworkBehaviourAction::NotifyHandler {
                     peer_id,
@@ -317,6 +326,8 @@ impl<TInEvent, TOutEvent> NetworkBehaviourAction<TInEvent, TOutEvent> {
                 NetworkBehaviourAction::DialAddress { address },
             NetworkBehaviourAction::DialPeer { peer_id, condition } =>
                 NetworkBehaviourAction::DialPeer { peer_id, condition },
+            NetworkBehaviourAction::DisconnectPeer { peer_id } =>
+                NetworkBehaviourAction::DisconnectPeer { peer_id },
             NetworkBehaviourAction::NotifyHandler { peer_id, handler, event } =>
                 NetworkBehaviourAction::NotifyHandler { peer_id, handler, event },
             NetworkBehaviourAction::ReportObservedAddr { address, score } =>

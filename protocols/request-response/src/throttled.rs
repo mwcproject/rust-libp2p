@@ -650,6 +650,8 @@ where
                     NetworkBehaviourAction::GenerateEvent(Event::Event(
                         RequestResponseEvent::ResponseSent { peer, request_id }))
                 }
+                | NetworkBehaviourAction::DisconnectPeer { peer_id } =>
+                    NetworkBehaviourAction::DisconnectPeer { peer_id },
                 | NetworkBehaviourAction::DialAddress { address } =>
                     NetworkBehaviourAction::DialAddress { address },
                 | NetworkBehaviourAction::DialPeer { peer_id, condition } =>

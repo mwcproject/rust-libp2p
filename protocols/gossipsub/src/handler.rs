@@ -37,12 +37,10 @@ use std::{
     io,
     pin::Pin,
     task::{Context, Poll},
-    time::Duration,
 };
-use wasm_timer::Instant;
 
 /// The initial time (in seconds) we set the keep alive for protocol negotiations to occur.
-const INITIAL_KEEP_ALIVE: u64 = 30;
+//const INITIAL_KEEP_ALIVE: u64 = 30;
 
 /// The event emitted by the Handler. This informs the behaviour of various events created
 /// by the handler.
@@ -170,7 +168,7 @@ impl GossipsubHandler {
             peer_kind_sent: false,
             protocol_unsupported: false,
             upgrade_errors: VecDeque::new(),
-            keep_alive: KeepAlive::Until(Instant::now() + Duration::from_secs(INITIAL_KEEP_ALIVE)),
+            keep_alive: KeepAlive::Yes, // Caller always want to keep connection. The another party will disconnect if it will be needed.   //Until(Instant::now() + Duration::from_secs(INITIAL_KEEP_ALIVE)),
         }
     }
 }

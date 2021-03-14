@@ -81,7 +81,7 @@
 //! use libp2p_core::{identity::Keypair,transport::{Transport, MemoryTransport}, Multiaddr};
 //! use libp2p_gossipsub::MessageAuthenticity;
 //! let local_key = Keypair::generate_ed25519();
-//! let local_peer_id = libp2p_core::PeerId::from(local_key.public());
+//! let local_peer_id = libp2p_core::PeerId::from_public_key(local_key.public());
 //!
 //! // Set up an encrypted TCP Transport over the Mplex
 //! // This is test transport (memory).
@@ -144,7 +144,7 @@ extern crate derive_builder;
 
 mod rpc_proto;
 
-pub use self::behaviour::{Gossipsub, GossipsubEvent, MessageAuthenticity};
+pub use self::behaviour::{Gossipsub, GossipsubEvent, MessageAuthenticity, PEER_TOPIC, PEER_EXCHANGE_NUMBER_LIMIT };
 pub use self::transform::{DataTransform, IdentityTransform};
 
 pub use self::config::{GossipsubConfig, GossipsubConfigBuilder, ValidationMode};

@@ -87,6 +87,11 @@ pub struct GossipsubConfig {
     iwant_followup_time: Duration,
     support_floodsub: bool,
     published_message_ids_cache_time: Duration,
+    connection_update_ticks: u64,
+    ban_peer_duration: Duration,
+    // if true, will reject connections from all peers except that identified by Dalek PK.
+    // It is critical for MWC, expected that peer PK will match the tor address to connect.
+    accept_dalek_pk_peers_only: bool,
 }
 
 impl GossipsubConfig {
@@ -262,7 +267,7 @@ impl GossipsubConfig {
         self.prune_backoff
     }
 
-    /// Number of heartbeat slots considered as slack for backoffs. This gurantees that we wait
+    /// Number of heartbeat slots considered as slack for backoffs. This guarantees that we wait
     /// at least backoff_slack heartbeats after a backoff is over before we try to graft. This
     /// solves problems occuring through high latencies. In particular if
     /// `backoff_slack * heartbeat_interval` is longer than any latencies between processing
@@ -292,13 +297,19 @@ impl GossipsubConfig {
         self.mesh_outbound_min
     }
 
-    /// Number of heartbeat ticks that specifcy the interval in which opportunistic grafting is
+    /// Number of heartbeat ticks that specify the interval in which opportunistic grafting is
     /// applied. Every `opportunistic_graft_ticks` we will attempt to select some high-scoring mesh
     /// peers to replace lower-scoring ones, if the median score of our mesh peers falls below a
     /// threshold (see https://godoc.org/github.com/libp2p/go-libp2p-pubsub#PeerScoreThresholds).
     /// The default is 60.
     pub fn opportunistic_graft_ticks(&self) -> u64 {
         self.opportunistic_graft_ticks
+    }
+
+    /// Number of heartbeat ticks that specify the interval when number of open connection will be
+    /// rebalanced. Default is 5
+    pub fn connection_update_ticks(&self) -> u64 {
+        self.connection_update_ticks
     }
 
     /// Controls how many times we will allow a peer to request the same message id through IWANT
@@ -350,6 +361,12 @@ impl GossipsubConfig {
     pub fn published_message_ids_cache_time(&self) -> Duration {
         self.published_message_ids_cache_time
     }
+
+    /// Peer Ban time interval. Default is 1 hour.
+    pub fn ban_peer_duration(&self) -> &Duration { &self.ban_peer_duration }
+
+    /// Accept peers with Dalek PK identity only.
+    pub fn accept_dalek_pk_peers_only(&self) -> bool { self.accept_dalek_pk_peers_only }
 }
 
 impl Default for GossipsubConfig {
@@ -419,6 +436,9 @@ impl Default for GossipsubConfigBuilder {
                 iwant_followup_time: Duration::from_secs(3),
                 support_floodsub: false,
                 published_message_ids_cache_time: Duration::from_secs(10),
+                connection_update_ticks: 5,
+                ban_peer_duration: Duration::from_secs(3600),
+                accept_dalek_pk_peers_only: false,
             },
         }
     }
@@ -720,6 +740,19 @@ impl GossipsubConfigBuilder {
         self
     }
 
+    /// Duration fir the peer ban.
+    pub fn ban_peer_duration(&mut self, duration: Duration ) -> &mut Self {
+        self.config.ban_peer_duration = duration;
+        self
+    }
+
+    /// Accept peers that identified by Dalek Public Key only. It is required for Tor connction
+    /// In this case PeerId will have it's tor address to call in.
+    pub fn accept_dalek_pk_peers_only(&mut self) -> &mut Self {
+        self.config.accept_dalek_pk_peers_only = true;
+        self
+    }
+
     /// Constructs a [`GossipsubConfig`] from the given configuration and validates the settings.
     pub fn build(&self) -> Result<GossipsubConfig, &str> {
         // check all constraints on config
@@ -769,7 +802,6 @@ impl std::fmt::Debug for GossipsubConfig {
         let _ = builder.field("fanout_ttl", &self.fanout_ttl);
         let _ = builder.field("max_transmit_size", &self.max_transmit_size);
         let _ = builder.field("duplicate_cache_time", &self.duplicate_cache_time);
-        let _ = builder.field("validate_messages", &self.validate_messages);
         let _ = builder.field("validation_mode", &self.validation_mode);
         let _ = builder.field("allow_self_origin", &self.allow_self_origin);
         let _ = builder.field("do_px", &self.do_px);

@@ -53,6 +53,7 @@ pub mod muxing;
 pub mod network;
 pub mod transport;
 pub mod upgrade;
+pub mod simple_ser;
 
 pub use multiaddr::Multiaddr;
 pub use multihash;
@@ -64,6 +65,7 @@ pub use translation::address_translation;
 pub use upgrade::{InboundUpgrade, OutboundUpgrade, UpgradeInfo, UpgradeError, ProtocolName};
 pub use connection::{Connected, Endpoint, ConnectedPoint};
 pub use network::Network;
+pub use simple_ser::{SimplePopSerializer, SimplePushSerializer};
 
 use std::{future::Future, pin::Pin};
 

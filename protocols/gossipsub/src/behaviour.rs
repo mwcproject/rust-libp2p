@@ -34,12 +34,12 @@ use std::{
 use futures::StreamExt;
 use log::{debug, error, info, trace, warn};
 use prost::Message;
-use rand::{seq::SliceRandom, thread_rng};
+use rand::{seq::SliceRandom, seq::IteratorRandom, thread_rng, RngCore};
 use wasm_timer::{Instant, Interval};
 
 use libp2p_core::{
     connection::ConnectionId, identity::Keypair, multiaddr::Protocol::Ip4,
-    multiaddr::Protocol::Ip6, ConnectedPoint, Multiaddr, PeerId,
+    multiaddr::Protocol::Ip6, ConnectedPoint, Multiaddr, PeerId, SimplePushSerializer
 };
 use libp2p_swarm::{
     DialPeerCondition, NetworkBehaviour, NetworkBehaviourAction, NotifyHandler, PollParameters,
@@ -56,7 +56,7 @@ use crate::peer_score::{PeerScore, PeerScoreParams, PeerScoreThresholds, RejectR
 use crate::protocol::SIGNING_PREFIX;
 use crate::subscription_filter::{AllowAllSubscriptionFilter, TopicSubscriptionFilter};
 use crate::time_cache::{DuplicateCache, TimeCache};
-use crate::topic::{Hasher, Topic, TopicHash};
+use crate::topic::{Hasher, Topic, TopicHash, IdentityHash};
 use crate::transform::{DataTransform, IdentityTransform};
 use crate::types::{
     FastMessageId, GossipsubControlAction, GossipsubMessage, GossipsubSubscription,
@@ -65,9 +65,15 @@ use crate::types::{
 use crate::types::{GossipsubRpc, PeerKind};
 use crate::{rpc_proto, TopicScoreParams};
 use std::{cmp::Ordering::Equal, fmt::Debug};
+use std::ops::Add;
 
 #[cfg(test)]
 mod tests;
+
+/// Topic at what node exchanged with peers.
+pub static PEER_TOPIC: &str = "Peers";
+/// Maximum number of peers in the list
+pub const  PEER_EXCHANGE_NUMBER_LIMIT : usize = 20;
 
 /// Determines if published messages should be signed or not.
 ///
@@ -242,7 +248,9 @@ pub struct Gossipsub<
 
     /// A list of peers that have been blacklisted by the user.
     /// Messages are not sent to and are rejected from these peers.
-    blacklisted_peers: HashSet<PeerId>,
+    /// Connection will not be kept for them as well.
+    /// Ban has a time limit. We don't want because of the accident to ban anybody forever.
+    blacklisted_peers: HashMap<PeerId, Instant>,
 
     /// Overlay network of connected peers - Maps topics to connected gossipsub peers.
     mesh: HashMap<TopicHash, BTreeSet<PeerId>>,
@@ -394,7 +402,7 @@ where
             topic_peers: HashMap::new(),
             peer_topics: HashMap::new(),
             explicit_peers: HashSet::new(),
-            blacklisted_peers: HashSet::new(),
+            blacklisted_peers: HashMap::new(),
             mesh: HashMap::new(),
             fanout: HashMap::new(),
             fanout_last_pub: HashMap::new(),
@@ -575,7 +583,7 @@ where
         // calculate the message id from the un-transformed data
         let msg_id = self.config.message_id(&GossipsubMessage {
             source: raw_message.source,
-            data, // the uncompressed form
+            data: data.clone(), // the uncompressed form
             sequence_number: raw_message.sequence_number,
             topic: raw_message.topic.clone(),
         });
@@ -605,7 +613,7 @@ where
             return Err(PublishError::Duplicate);
         }
 
-        debug!("Publishing message: {:?}", msg_id);
+        debug!("Publishing message: Message_id: {:?}  Content: {}", msg_id, String::from_utf8_lossy(&data) );
 
         let topic_hash = raw_message.topic.clone();
 
@@ -681,6 +689,17 @@ where
                         .insert(topic_hash.clone(), Instant::now());
                 }
             }
+        }
+
+        // if there are no peers to send the message, we will send the message to mesh_n random peers
+        if recipient_peers.is_empty() {
+            let mut rng = thread_rng();
+            recipient_peers.extend(
+                self.outbound_peers.iter()
+                    .cloned()
+                    .choose_multiple(&mut rng, self.config.mesh_n() )
+                    .iter().cloned()
+            );
         }
 
         if recipient_peers.is_empty() && !mesh_peers_sent {
@@ -789,15 +808,15 @@ where
 
     /// Blacklists a peer. All messages from this peer will be rejected and any message that was
     /// created by this peer will be rejected.
-    pub fn blacklist_peer(&mut self, peer_id: &PeerId) {
-        if self.blacklisted_peers.insert(*peer_id) {
+    pub fn blacklist_peer(&mut self, peer_id: &PeerId, duration: Duration ) {
+        if self.blacklisted_peers.insert(*peer_id, Instant::now().add(duration) ).is_none() {
             debug!("Peer has been blacklisted: {}", peer_id);
         }
     }
 
     /// Removes a peer from the blacklist if it has previously been blacklisted.
     pub fn remove_blacklisted_peer(&mut self, peer_id: &PeerId) {
-        if self.blacklisted_peers.remove(peer_id) {
+        if self.blacklisted_peers.remove(peer_id).is_some() {
             debug!("Peer has been removed from the blacklist: {}", peer_id);
         }
     }
@@ -1479,7 +1498,7 @@ where
         );
 
         // Reject any message from a blacklisted peer
-        if self.blacklisted_peers.contains(propagation_source) {
+        if self.blacklisted_peers.contains_key(propagation_source) {
             debug!(
                 "Rejecting message from blacklisted peer: {}",
                 propagation_source
@@ -1493,12 +1512,14 @@ where
                 );
                 gossip_promises.reject_message(msg_id, &RejectReason::BlackListedPeer);
             }
+            // Should not happen. The peer connection should be killed the next moment
+            self.disconnect_peer(*propagation_source, true);
             return false;
         }
 
         // Also reject any message that originated from a blacklisted peer
         if let Some(source) = raw_message.source.as_ref() {
-            if self.blacklisted_peers.contains(source) {
+            if self.blacklisted_peers.contains_key(source) {
                 debug!(
                     "Rejecting message from peer {} because of blacklisted source: {}",
                     propagation_source, source
@@ -1564,7 +1585,14 @@ where
         if let Some(fast_message_id) = fast_message_id.as_ref() {
             if let Some(msg_id) = self.fast_messsage_id_cache.get(fast_message_id) {
                 let msg_id = msg_id.clone();
-                self.message_is_valid(&msg_id, &mut raw_message, propagation_source);
+                if !self.message_is_valid(&msg_id, &mut raw_message, propagation_source) {
+                    self.handle_invalid_message(
+                        propagation_source,
+                        raw_message,
+                        ValidationError::TransformFailed,
+                    );
+                    return;
+                }
                 if let Some((peer_score, ..)) = &mut self.peer_score {
                     peer_score.duplicated_message(propagation_source, &msg_id, &raw_message.topic);
                 }
@@ -1630,7 +1658,8 @@ where
         self.mcache.put(&msg_id, raw_message.clone());
 
         // Dispatch the message to the user if we are subscribed to any of the topics
-        if self.mesh.contains_key(&message.topic) {
+        // In validation case
+        if self.config.validate_messages() || self.mesh.contains_key(&message.topic) {
             debug!("Sending received message to user");
             self.events.push_back(NetworkBehaviourAction::GenerateEvent(
                 GossipsubEvent::Message {
@@ -2233,6 +2262,38 @@ where
         // shift the memcache
         self.mcache.shift();
 
+        // Maintain the expected number of the peers. Occasionally update with available peers.
+        if self.heartbeat_ticks % self.config.connection_update_ticks() == 0 {
+            let mut peers = self.peer_topics.keys().cloned()
+                .collect::<Vec<PeerId>>();
+
+            let mut rng = thread_rng();
+
+            while peers.len() > self.config.mesh_n_high() * 2 {
+                let peer_id = peers.remove( rng.next_u32() as usize % peers.len() );
+                self.disconnect_peer( peer_id, false );
+            }
+
+            // Update one of the peers with connected PeerId info.
+            if !peers.is_empty() {
+                if let Err(e) = self.send_peer_list(&peers[rng.next_u32() as usize % peers.len()]) {
+                    warn!("Failed to update random peer with a list of connected PeerId, {}", e);
+                }
+            }
+        }
+
+        // Update time related data. Let's clean up expired...
+        if self.heartbeat_ticks % 13 == 0 {
+            let cur_time = Instant::now();
+            self.blacklisted_peers.retain( |_, v| *v > cur_time );
+        }
+
+        if self.heartbeat_ticks % 5 == 0 {
+            // Let's dmp the data for debugging
+            info!("Libp2p outbound peers: {}", self.outbound_peers.iter().map(|p| p.to_string() ).collect::<Vec<String>>().join(", ") );
+            info!("Libp2p blacklisted peers: {}", self.blacklisted_peers.iter().map(|p| p.0.to_string() ).collect::<Vec<String>>().join(", ") );
+        }
+
         debug!("Completed Heartbeat");
     }
 
@@ -2542,6 +2603,13 @@ where
         }
     }
 
+    pub fn disconnect_peer( &mut self, peer_id: PeerId, ban: bool ) {
+        if ban {
+            self.blacklisted_peers.insert(peer_id, Instant::now().add(self.config.ban_peer_duration().clone()) );
+        }
+        self.events.push_back(NetworkBehaviourAction::DisconnectPeer {peer_id});
+    }
+
     // adds a control action to control_pool
     fn control_pool_add(
         control_pool: &mut HashMap<PeerId, Vec<GossipsubControlAction>>,
@@ -2721,6 +2789,45 @@ where
 
         Ok(rpc_list.into_iter().map(Arc::new).collect())
     }
+
+    // Sending the list of the peers to the recipient
+    fn send_peer_list(&mut self, peer_id: &PeerId) -> Result<(), PublishError> {
+        // Creating the message.
+        let mut ser = SimplePushSerializer::new(1);
+
+        let peers = self.peer_topics.keys().cloned()
+            .filter(|p| !self.blacklisted_peers.contains_key(p) )
+            .collect::<Vec<PeerId>>();
+        let len = std::cmp::min(peers.len(), PEER_EXCHANGE_NUMBER_LIMIT); // Don't share too many peers. 20 should be enough
+        ser.push_u16(len as u16);
+
+        for i in 0..len {
+            ser.push_vec( &peers[i].to_bytes() );
+        }
+
+        // Here is a data to populate...
+        let data = ser.to_vec();
+
+        let peer_topic : Topic<IdentityHash> = Topic::new(PEER_TOPIC);
+
+        // Transform the data before building a raw_message.
+        let transformed_data = self
+            .data_transform
+            .outbound_transform(&peer_topic.hash(), data.clone())?;
+
+        let raw_message = self.build_raw_message(peer_topic.into(), transformed_data)?;
+
+        let event = Arc::new(
+            GossipsubRpc {
+                subscriptions: Vec::new(),
+                messages: vec![raw_message.clone()],
+                control_msgs: Vec::new(),
+            }
+            .into_protobuf(),
+        );
+
+        self.send_message(peer_id.clone(), event.clone())
+    }
 }
 
 fn get_ip_addr(addr: &Multiaddr) -> Option<IpAddr> {
@@ -2754,8 +2861,9 @@ where
 
     fn inject_connected(&mut self, peer_id: &PeerId) {
         // Ignore connections from blacklisted peers.
-        if self.blacklisted_peers.contains(peer_id) {
+        if self.blacklisted_peers.contains_key(peer_id) {
             debug!("Ignoring connection from blacklisted peer: {}", peer_id);
+            self.disconnect_peer(peer_id.clone(), true); // Disconnect it.
             return;
         }
 
@@ -2787,6 +2895,11 @@ where
             }
         }
 
+        // Update new connected peer with known peers.
+        if self.send_peer_list( peer_id ).is_err() {
+            error!("Failed to send peer list on connect");
+        }
+
         // Insert an empty set of the topics of this peer until known.
         self.peer_topics.insert(*peer_id, Default::default());
 
@@ -2811,8 +2924,8 @@ where
             let topics = match self.peer_topics.get(peer_id) {
                 Some(topics) => (topics),
                 None => {
-                    if !self.blacklisted_peers.contains(peer_id) {
-                        debug!("Disconnected node, not in connected nodes");
+                    if !self.blacklisted_peers.contains_key(peer_id) {
+                        debug!("Disconnected node, in blacklist");
                     }
                     return;
                 }
@@ -2870,8 +2983,17 @@ where
         _: &ConnectionId,
         endpoint: &ConnectedPoint,
     ) {
+        // We are not accepting the peers with non dalek PK identity.
+        if self.config.accept_dalek_pk_peers_only() && peer_id.as_dalek_pubkey().is_err() {
+            warn!("Rejecting peer {} because it doesn't identified with Dalek PK", peer_id);
+            self.disconnect_peer(*peer_id, true); // Disconnect it.
+            return;
+        }
+
         // Ignore connections from blacklisted peers.
-        if self.blacklisted_peers.contains(peer_id) {
+        if self.blacklisted_peers.contains_key(peer_id) {
+            debug!("Rejecting peer {} because it blacklisted", peer_id);
+            self.disconnect_peer(*peer_id, true); // Disconnect it.
             return;
         }
 
@@ -3107,6 +3229,9 @@ where
                 }
                 NetworkBehaviourAction::ReportObservedAddr { address, score } => {
                     NetworkBehaviourAction::ReportObservedAddr { address, score }
+                }
+                NetworkBehaviourAction::DisconnectPeer { peer_id } => {
+                    NetworkBehaviourAction::DisconnectPeer { peer_id }
                 }
             });
         }

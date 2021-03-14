@@ -36,6 +36,10 @@ impl Keypair {
         Keypair::from(SecretKey::generate())
     }
 
+    pub fn from_secret( sk_bytes: impl AsMut<[u8]>) -> Result<Keypair, DecodingError> {
+        Ok( Keypair::from(SecretKey::from_bytes(sk_bytes)?) )
+    }
+
     /// Encode the keypair into a byte array by concatenating the bytes
     /// of the secret scalar and the compressed public point,
     /// an informal standard for encoding Ed25519 keypairs.
@@ -103,7 +107,7 @@ impl From<SecretKey> for Keypair {
 
 /// An Ed25519 public key.
 #[derive(PartialEq, Eq, Debug, Clone)]
-pub struct PublicKey(ed25519::PublicKey);
+pub struct PublicKey(pub ed25519::PublicKey);
 
 impl PublicKey {
     /// Verify the Ed25519 signature on a message using the public key.

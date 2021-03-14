@@ -592,6 +592,9 @@ mod tests {
                 NetworkBehaviourAction::NotifyHandler { event, .. } => {
                     let event = proto_to_message(event);
                     for s in &event.messages {
+                        if s.topic.as_str() == PEER_TOPIC {
+                            continue;
+                        }
                         collected_publish.push(s.clone());
                     }
                     collected_publish
@@ -679,6 +682,9 @@ mod tests {
                 NetworkBehaviourAction::NotifyHandler { event, .. } => {
                     let event = proto_to_message(event);
                     for s in &event.messages {
+                        if s.topic.as_str() == PEER_TOPIC {
+                            continue;
+                        }
                         collected_publish.push(s.clone());
                     }
                     collected_publish
@@ -2000,6 +2006,9 @@ mod tests {
                 NetworkBehaviourAction::NotifyHandler { event, .. } => {
                     let event = proto_to_message(event);
                     for s in &event.messages {
+                        if s.topic.as_str() == PEER_TOPIC {
+                            continue;
+                        }
                         collected_publish.push(s.clone());
                     }
                     collected_publish
@@ -2723,6 +2732,9 @@ mod tests {
                 NetworkBehaviourAction::NotifyHandler { event, peer_id, .. } => {
                     let event = proto_to_message(event);
                     for s in &event.messages {
+                        if s.topic.as_str() == PEER_TOPIC {
+                            continue;
+                        }
                         collected_publish.push((peer_id.clone(), s.clone()));
                     }
                     collected_publish
@@ -2777,6 +2789,9 @@ mod tests {
                 NetworkBehaviourAction::NotifyHandler { event, peer_id, .. } => {
                     let event = proto_to_message(event);
                     for s in &event.messages {
+                        if s.topic.as_str() == PEER_TOPIC {
+                            continue;
+                        }
                         collected_publish.push((peer_id.clone(), s.clone()));
                     }
                     collected_publish
@@ -4744,6 +4759,9 @@ mod tests {
                     if peer_id == &p1 || peer_id == &p2 {
                         let event = proto_to_message(event);
                         for s in &event.messages {
+                            if s.topic.as_str() == PEER_TOPIC {
+                                continue;
+                            }
                             collected_publish.push(s.clone());
                         }
                     }
@@ -4800,6 +4818,9 @@ mod tests {
                     if peer_id == &p1 || peer_id == &p2 {
                         let event = proto_to_message(event);
                         for s in &event.messages {
+                            if s.topic.as_str() == PEER_TOPIC {
+                                continue;
+                            }
                             collected_publish.push(s.clone());
                         }
                     }

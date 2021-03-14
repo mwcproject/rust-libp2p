@@ -468,6 +468,11 @@ where TBehaviour: NetworkBehaviour<ProtocolsHandler = THandler>,
         me.network.is_connected(peer_id)
     }
 
+    /// Checks whether the [`Network`] dealing to the peer.
+    pub fn is_dialing(me: &Self, peer_id: &PeerId) -> bool {
+        me.network.is_dialing(peer_id)
+    }
+
     /// Returns the next event that happens in the `Swarm`.
     ///
     /// Includes events from the `NetworkBehaviour` but also events about the connections status.
@@ -741,6 +746,9 @@ where TBehaviour: NetworkBehaviour<ProtocolsHandler = THandler>,
                         }
                     }
                 },
+                Poll::Ready(NetworkBehaviourAction::DisconnectPeer { peer_id }) => {
+                    this.disconnect_peer(&peer_id);
+                },
                 Poll::Ready(NetworkBehaviourAction::ReportObservedAddr { address, score }) => {
                     for addr in this.network.address_translation(&address) {
                         if this.external_addrs.iter().all(|a| a.addr != addr) {
@@ -752,6 +760,25 @@ where TBehaviour: NetworkBehaviour<ProtocolsHandler = THandler>,
             }
         }
     }
+
+    pub fn disconnect_peer( &mut self, peer_id: &PeerId ) {
+        if let Some(mut peer) = self.network.peer(peer_id.clone()).into_connected() {
+            let mut con_iter = peer.connections();
+            loop {
+                if let Some(con) = con_iter.next() {
+                    con.start_close();
+                }
+                else {
+                    break;
+                }
+            }
+        }
+    }
+
+    pub fn get_behaviour(&mut self) -> &mut TBehaviour {
+        &mut self.behaviour
+    }
+
 }
 
 /// Connection to notify of a pending event.
@@ -1143,7 +1170,7 @@ mod tests {
             .multiplex(libp2p_mplex::MplexConfig::new())
             .boxed();
         let behaviour = CallTraceBehaviour::new(MockBehaviour::new(handler_proto));
-        SwarmBuilder::new(transport, behaviour, pubkey.into()).build()
+        SwarmBuilder::new(transport, behaviour, PeerId::from_public_key(pubkey)).build()
     }
 
     /// Establishes a number of connections between two peers,

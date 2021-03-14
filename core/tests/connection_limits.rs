@@ -55,8 +55,8 @@ fn max_outgoing() {
     assert_eq!(err.limit, outgoing_limit);
 
     let info = network.info();
-    assert_eq!(info.num_peers(), 0);
     assert_eq!(info.connection_counters().num_pending_outgoing(), outgoing_limit);
+    assert_eq!(info.into_peers().len(), 0);
 
     // Abort all dialing attempts.
     let mut peer = network.peer(target.clone())

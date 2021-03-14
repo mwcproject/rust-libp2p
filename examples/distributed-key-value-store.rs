@@ -70,7 +70,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Create a random key for ourselves.
     let local_key = identity::Keypair::generate_ed25519();
-    let local_peer_id = PeerId::from(local_key.public());
+    let local_peer_id = PeerId::from_public_key(local_key.public());
 
     // Set up a an encrypted DNS-enabled TCP Transport over the Mplex protocol.
     let transport = build_development_transport(local_key)?;

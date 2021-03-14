@@ -439,7 +439,7 @@ impl<TInEvent, TOutEvent, THandler, TTransErr, THandlerErr>
 
     /// Returns the number of connected peers, i.e. those with at least one
     /// established connection in the pool.
-    pub fn num_peers(&self) -> usize {
+    pub fn _num_peers(&self) -> usize {
         self.established.len()
     }
 

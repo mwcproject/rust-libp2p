@@ -240,10 +240,10 @@ where
 
     /// Returns information about the state of the `Network`.
     pub fn info(&self) -> NetworkInfo {
-        let num_peers = self.pool.num_peers();
+        let peers: Vec<PeerId> = self.pool.iter_connected().cloned().collect();
         let connection_counters = self.pool.counters().clone();
         NetworkInfo {
-            num_peers,
+            peers,
             connection_counters,
         }
     }
@@ -588,7 +588,7 @@ where
 #[derive(Clone, Debug)]
 pub struct NetworkInfo {
     /// The total number of connected peers.
-    num_peers: usize,
+    peers: Vec<PeerId>,
     /// Counters of ongoing network connections.
     connection_counters: ConnectionCounters,
 }
@@ -596,8 +596,8 @@ pub struct NetworkInfo {
 impl NetworkInfo {
     /// The number of connected peers, i.e. peers with whom at least
     /// one established connection exists.
-    pub fn num_peers(&self) -> usize {
-        self.num_peers
+    pub fn into_peers(self) -> Vec<PeerId> {
+        self.peers
     }
 
     /// Gets counters for ongoing network connections.

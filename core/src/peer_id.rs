@@ -23,6 +23,9 @@ use multihash::{Code, Error, Multihash, MultihashDigest};
 use rand::Rng;
 use std::{convert::TryFrom, fmt, str::FromStr};
 use thiserror::Error;
+use std::hash::Hash;
+use sha3::{Digest, Sha3_256};
+use data_encoding::BASE32;
 
 /// Public keys with byte-lengths smaller than `MAX_INLINE_KEY_LENGTH` will be
 /// automatically used as the peer id using an identity multihash.
@@ -46,8 +49,23 @@ impl fmt::Debug for PeerId {
 
 impl fmt::Display for PeerId {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        self.to_base58().fmt(f)
+        match self.as_onion_address() {
+            Ok(onion_addr) => write!(f, "{}", onion_addr ),
+            Err(_) => write!(f, "{}", self.to_base58() ),
+        }
     }
+}
+
+#[derive(Debug, Error)]
+pub enum ParseError {
+    #[error("base-58 decode error: {0}")]
+    B58(#[from] bs58::decode::Error),
+    #[error("decoding multihash failed")]
+    MultiHash,
+    #[error("PeerId doesn't have Dalek Public Key")]
+    NotFoundDalekPK,
+    #[error("PeerId Error: {0}")]
+    GenericError(String),
 }
 
 impl PeerId {
@@ -64,6 +82,10 @@ impl PeerId {
         let multihash = hash_algorithm.digest(&key_enc);
 
         PeerId { multihash }
+    }
+
+    pub fn get_address(&self) -> Result<String, ParseError> {
+        self.as_onion_address()
     }
 
     /// Parses a `PeerId` from bytes.
@@ -102,6 +124,12 @@ impl PeerId {
         self.multihash.to_bytes()
     }
 
+    /// Currently to_hash_bytes & to_bytes are the same. But if in case we will need
+    /// to add some fields into PeerId, there will be a difference
+    pub fn to_hash_bytes(&self) -> Vec<u8> {
+        self.multihash.to_bytes()
+    }
+
     /// Returns a base-58 encoded string of this `PeerId`.
     pub fn to_base58(&self) -> String {
         bs58::encode(self.to_bytes()).into_string()
@@ -117,11 +145,43 @@ impl PeerId {
         let enc = public_key.clone().into_protobuf_encoding();
         Some(alg.digest(&enc) == self.multihash)
     }
-}
 
-impl From<PublicKey> for PeerId {
-    fn from(key: PublicKey) -> PeerId {
-        PeerId::from_public_key(key)
+    pub fn as_dalek_pubkey(&self) -> Result<ed25519_dalek::PublicKey, ParseError> {
+        match Code::try_from(self.multihash.code()) {
+            Ok(Code::Identity) => {
+                let pk = PublicKey::from_protobuf_encoding( self.multihash.digest() )
+                    .map_err(|e| ParseError::GenericError(format!("Unable to parse PeerId data, {}",e)))?;
+
+                match pk {
+                    PublicKey::Ed25519(pk) => Ok(pk.0),
+                    _ =>  Err(ParseError::NotFoundDalekPK),
+                }
+            },
+            _ => return Err(ParseError::NotFoundDalekPK),
+        }
+    }
+
+    pub fn as_onion_address(&self) -> Result<String, ParseError> {
+        let pk = self.as_dalek_pubkey()?;
+        Ok(Self::onion_v3_from_pubkey(&pk))
+    }
+
+    // Generate an onion address from an ed25519_dalek public key
+    fn onion_v3_from_pubkey(pub_key: &ed25519_dalek::PublicKey) -> String {
+        // calculate checksum
+        let mut hasher = Sha3_256::new();
+        hasher.input(b".onion checksum");
+        hasher.input(pub_key.as_bytes());
+        hasher.input([0x03u8]);
+        let checksum = hasher.result();
+
+        let mut address_bytes = pub_key.as_bytes().to_vec();
+        address_bytes.push(checksum[0]);
+        address_bytes.push(checksum[1]);
+        address_bytes.push(0x03u8);
+
+        let ret = BASE32.encode(&address_bytes);
+        ret.to_lowercase()
     }
 }
 
@@ -130,14 +190,6 @@ impl TryFrom<Vec<u8>> for PeerId {
 
     fn try_from(value: Vec<u8>) -> Result<Self, Self::Error> {
         PeerId::from_bytes(&value).map_err(|_| value)
-    }
-}
-
-impl TryFrom<Multihash> for PeerId {
-    type Error = Multihash;
-
-    fn try_from(value: Multihash) -> Result<Self, Self::Error> {
-        PeerId::from_multihash(value)
     }
 }
 
@@ -153,19 +205,12 @@ impl From<PeerId> for Multihash {
     }
 }
 
+/* Automatic conversion is disabled because sometimes we need all bytes, sometimes just multihash data
 impl From<PeerId> for Vec<u8> {
     fn from(peer_id: PeerId) -> Self {
         peer_id.to_bytes()
     }
-}
-
-#[derive(Debug, Error)]
-pub enum ParseError {
-    #[error("base-58 decode error: {0}")]
-    B58(#[from] bs58::decode::Error),
-    #[error("decoding multihash failed")]
-    MultiHash,
-}
+}*/
 
 impl FromStr for PeerId {
     type Err = ParseError;

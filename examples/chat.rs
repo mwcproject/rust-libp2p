@@ -68,7 +68,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Create a random PeerId
     let local_key = identity::Keypair::generate_ed25519();
-    let local_peer_id = PeerId::from(local_key.public());
+    let local_peer_id = PeerId::from_public_key(local_key.public());
     println!("Local peer id: {:?}", local_peer_id);
 
     // Set up a an encrypted DNS-enabled TCP Transport over the Mplex and Yamux protocols

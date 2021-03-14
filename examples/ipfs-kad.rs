@@ -45,7 +45,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Create a random key for ourselves.
     let local_key = identity::Keypair::generate_ed25519();
-    let local_peer_id = PeerId::from(local_key.public());
+    let local_peer_id = PeerId::from_public_key(local_key.public());
 
     // Set up a an encrypted DNS-enabled TCP Transport over the Mplex protocol
     let transport = build_development_transport(local_key)?;
@@ -87,11 +87,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     let to_search: PeerId = if let Some(peer_id) = env::args().nth(1) {
         peer_id.parse()?
     } else {
-        identity::Keypair::generate_ed25519().public().into()
+        PeerId::from_public_key( identity::Keypair::generate_ed25519().public().into())
     };
 
     println!("Searching for the closest peers to {:?}", to_search);
-    swarm.get_closest_peers(to_search);
+    swarm.get_closest_peers(to_search.to_bytes());
 
     // Kick it off!
     task::block_on(async move {

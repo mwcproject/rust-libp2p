@@ -241,12 +241,12 @@ fn query_iter() {
         // propagate forwards through the list of peers.
         let search_target = PeerId::random();
         let search_target_key = kbucket::Key::from(search_target);
-        let qid = swarms[0].get_closest_peers(search_target);
+        let qid = swarms[0].get_closest_peers(search_target.to_hash_bytes() );
 
         match swarms[0].query(&qid) {
             Some(q) => match q.info() {
                 QueryInfo::GetClosestPeers { key } => {
-                    assert_eq!(&key[..], search_target.to_bytes().as_slice())
+                    assert_eq!(&key[..], search_target.to_hash_bytes().as_slice())
                 },
                 i => panic!("Unexpected query info: {:?}", i)
             }
@@ -269,7 +269,7 @@ fn query_iter() {
                                 id, result: QueryResult::GetClosestPeers(Ok(ok)), ..
                             })) => {
                                 assert_eq!(id, qid);
-                                assert_eq!(&ok.key[..], search_target.to_bytes().as_slice());
+                                assert_eq!(&ok.key[..], search_target.to_hash_bytes());
                                 assert_eq!(swarm_ids[i], expected_swarm_id);
                                 assert_eq!(swarm.queries.size(), 0);
                                 assert!(expected_peer_ids.iter().all(|p| ok.peers.contains(p)));
@@ -311,7 +311,7 @@ fn unresponsive_not_returned_direct() {
 
     // Ask first to search a random value.
     let search_target = PeerId::random();
-    swarms[0].get_closest_peers(search_target);
+    swarms[0].get_closest_peers(search_target.to_hash_bytes());
 
     block_on(
         poll_fn(move |ctx| {
@@ -321,7 +321,7 @@ fn unresponsive_not_returned_direct() {
                         Poll::Ready(Some(KademliaEvent::QueryResult {
                             result: QueryResult::GetClosestPeers(Ok(ok)), ..
                         })) => {
-                            assert_eq!(&ok.key[..], search_target.to_bytes().as_slice());
+                            assert_eq!(&ok.key[..], search_target.to_hash_bytes().as_slice());
                             assert_eq!(ok.peers.len(), 0);
                             return Poll::Ready(());
                         }
@@ -361,7 +361,7 @@ fn unresponsive_not_returned_indirect() {
 
     // Ask second to search a random value.
     let search_target = PeerId::random();
-    swarms[1].get_closest_peers(search_target);
+    swarms[1].get_closest_peers(search_target.to_hash_bytes());
 
     block_on(
         poll_fn(move |ctx| {
@@ -371,7 +371,7 @@ fn unresponsive_not_returned_indirect() {
                         Poll::Ready(Some(KademliaEvent::QueryResult {
                             result: QueryResult::GetClosestPeers(Ok(ok)), ..
                         })) => {
-                            assert_eq!(&ok.key[..], search_target.to_bytes().as_slice());
+                            assert_eq!(&ok.key[..], search_target.to_hash_bytes().as_slice());
                             assert_eq!(ok.peers.len(), 1);
                             assert_eq!(ok.peers[0], first_peer_id);
                             return Poll::Ready(());
@@ -886,7 +886,7 @@ fn exceed_jobs_max_queries() {
     let (_addr, mut swarm) = build_node();
     let num = JOBS_MAX_QUERIES + 1;
     for _ in 0 .. num {
-        swarm.get_closest_peers(PeerId::random());
+        swarm.get_closest_peers(PeerId::random().to_hash_bytes());
     }
 
     assert_eq!(swarm.queries.size(), num);
@@ -1073,7 +1073,7 @@ fn manual_bucket_inserts() {
     // that none of them was inserted into a bucket.
     let mut routable = Vec::new();
     // Start an iterative query from the first peer.
-    swarms[0].1.get_closest_peers(PeerId::random());
+    swarms[0].1.get_closest_peers(PeerId::random().to_hash_bytes());
     block_on(poll_fn(move |ctx| {
         for (_, swarm) in swarms.iter_mut() {
             loop {

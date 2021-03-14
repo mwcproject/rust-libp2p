@@ -48,7 +48,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // Create a random PeerId.
     let id_keys = identity::Keypair::generate_ed25519();
-    let peer_id = PeerId::from(id_keys.public());
+    let peer_id = PeerId::from_public_key(id_keys.public() );
     println!("Local peer id: {:?}", peer_id);
 
     // Create a transport.

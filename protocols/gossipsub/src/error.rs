@@ -113,6 +113,12 @@ impl fmt::Display for GossipsubHandlerError {
     }
 }
 
+impl fmt::Display for PublishError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 impl std::error::Error for GossipsubHandlerError {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match self {

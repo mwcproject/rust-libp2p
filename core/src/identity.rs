@@ -66,6 +66,10 @@ impl Keypair {
         Keypair::Ed25519(ed25519::Keypair::generate())
     }
 
+    pub fn ed25519_from_secret(sk_bytes: impl AsMut<[u8]>) -> Result<Keypair,DecodingError> {
+        Ok(Keypair::Ed25519(ed25519::Keypair::from_secret(sk_bytes)?))
+    }
+
     /// Generate a new Secp256k1 keypair.
     #[cfg(feature = "secp256k1")]
     pub fn generate_secp256k1() -> Keypair {
@@ -215,7 +219,7 @@ impl PublicKey {
 
     /// Convert the `PublicKey` into the corresponding `PeerId`.
     pub fn into_peer_id(self) -> PeerId {
-        self.into()
+        PeerId::from_public_key(self)
     }
 }
 

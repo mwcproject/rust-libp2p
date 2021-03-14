@@ -441,6 +441,9 @@ fn build_struct(ast: &DeriveInput, data_struct: &DataStruct) -> TokenStream {
                     std::task::Poll::Ready(#network_behaviour_action::DialPeer { peer_id, condition }) => {
                         return std::task::Poll::Ready(#network_behaviour_action::DialPeer { peer_id, condition });
                     }
+                    std::task::Poll::Ready(#network_behaviour_action::DisconnectPeer { peer_id }) => {
+                        return std::task::Poll::Ready(#network_behaviour_action::DisconnectPeer { peer_id });
+                    }
                     std::task::Poll::Ready(#network_behaviour_action::NotifyHandler { peer_id, handler, event }) => {
                         return std::task::Poll::Ready(#network_behaviour_action::NotifyHandler {
                             peer_id,

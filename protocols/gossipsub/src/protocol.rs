@@ -218,7 +218,7 @@ impl GossipsubCodec {
             .map(|key| PublicKey::from_protobuf_encoding(&key))
         {
             Some(Ok(key)) => key,
-            _ => match PublicKey::from_protobuf_encoding(&source.to_bytes()[2..]) {
+            _ => match PublicKey::from_protobuf_encoding(&source.to_hash_bytes()[2..]) {
                 Ok(v) => v,
                 Err(_) => {
                     warn!("Signature verification failed: No valid public key supplied");
