@@ -255,8 +255,8 @@ pub struct RequestResponseConfig {
 impl Default for RequestResponseConfig {
     fn default() -> Self {
         Self {
-            connection_keep_alive: Duration::from_secs(10),
-            request_timeout: Duration::from_secs(10),
+            connection_keep_alive: Duration::from_secs(30),
+            request_timeout: Duration::from_secs(30),
         }
     }
 }

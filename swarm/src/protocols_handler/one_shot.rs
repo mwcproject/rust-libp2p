@@ -237,8 +237,8 @@ pub struct OneShotHandlerConfig {
 impl Default for OneShotHandlerConfig {
     fn default() -> Self {
         OneShotHandlerConfig {
-            keep_alive_timeout: Duration::from_secs(10),
-            outbound_substream_timeout: Duration::from_secs(10),
+            keep_alive_timeout: Duration::from_secs(30),
+            outbound_substream_timeout: Duration::from_secs(30),
             max_dial_negotiated: 8,
         }
     }

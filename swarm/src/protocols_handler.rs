@@ -256,7 +256,7 @@ impl<TUpgrade, TInfo> SubstreamProtocol<TUpgrade, TInfo> {
             upgrade,
             info,
             upgrade_protocol: upgrade::Version::V1,
-            timeout: Duration::from_secs(10),
+            timeout: Duration::from_secs(30),
         }
     }
 

@@ -81,7 +81,7 @@ pub fn build_transport(
         .upgrade(Version::V1)
         .authenticate(noise_config)
         .multiplex(yamux_config)
-        .timeout(Duration::from_secs(20))
+        .timeout(Duration::from_secs(40))
         .boxed()
 }
 

@@ -1494,7 +1494,7 @@ where
         debug!(
             "Handling message: {:?} from peer: {}",
             msg_id,
-            propagation_source.to_string()
+            propagation_source.to_string(),
         );
 
         // Reject any message from a blacklisted peer
