@@ -436,7 +436,7 @@ impl Default for GossipsubConfigBuilder {
                 iwant_followup_time: Duration::from_secs(3),
                 support_floodsub: false,
                 published_message_ids_cache_time: Duration::from_secs(10),
-                connection_update_ticks: 5,
+                connection_update_ticks: 10,
                 ban_peer_duration: Duration::from_secs(3600),
                 accept_dalek_pk_peers_only: false,
             },

@@ -41,8 +41,12 @@ pub struct PeerId {
 
 impl fmt::Debug for PeerId {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let address_str = match self.as_onion_address() {
+            Ok(onion_addr) => onion_addr,
+            Err(_) => self.to_base58(),
+        };
         f.debug_tuple("PeerId")
-            .field(&self.to_base58())
+            .field(&address_str)
             .finish()
     }
 }

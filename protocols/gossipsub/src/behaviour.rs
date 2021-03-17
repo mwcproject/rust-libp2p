@@ -695,8 +695,7 @@ where
         if recipient_peers.is_empty() {
             let mut rng = thread_rng();
             recipient_peers.extend(
-                self.outbound_peers.iter()
-                    .cloned()
+                self.peer_topics.iter().map(|(k,_v)| k.clone())
                     .choose_multiple(&mut rng, self.config.mesh_n() )
                     .iter().cloned()
             );
@@ -1898,8 +1897,6 @@ where
 
     /// Heartbeat function which shifts the memcache and updates the mesh.
     fn heartbeat(&mut self) {
-        debug!("Starting heartbeat");
-
         self.heartbeat_ticks += 1;
 
         let mut to_graft = HashMap::new();
@@ -2283,18 +2280,18 @@ where
         }
 
         // Update time related data. Let's clean up expired...
-        if self.heartbeat_ticks % 13 == 0 {
+        if self.heartbeat_ticks % 23 == 0 {
             let cur_time = Instant::now();
             self.blacklisted_peers.retain( |_, v| *v > cur_time );
         }
 
-        if self.heartbeat_ticks % 5 == 0 {
+        // heartbeat interval is 3 seconds. Let's dump every minute
+        if self.heartbeat_ticks % 20 == 0 {
             // Let's dmp the data for debugging
+            info!("Libp2p all peers: {:?}", self.peer_topics.iter().map(|(k,_v)| k.to_string()).collect::<Vec<String>>().join(", ") );
             info!("Libp2p outbound peers: {}", self.outbound_peers.iter().map(|p| p.to_string() ).collect::<Vec<String>>().join(", ") );
             info!("Libp2p blacklisted peers: {}", self.blacklisted_peers.iter().map(|p| p.0.to_string() ).collect::<Vec<String>>().join(", ") );
         }
-
-        debug!("Completed Heartbeat");
     }
 
     /// Emits gossip - Send IHAVE messages to a random set of gossip peers. This is applied to mesh
@@ -3345,11 +3342,17 @@ impl<C: DataTransform, F: TopicSubscriptionFilter> fmt::Debug for Gossipsub<C, F
             .field("publish_config", &self.publish_config)
             .field("topic_peers", &self.topic_peers)
             .field("peer_topics", &self.peer_topics)
+            .field("explicit_peers", &self.explicit_peers)
+            .field("blacklisted_peers", &self.blacklisted_peers)
             .field("mesh", &self.mesh)
             .field("fanout", &self.fanout)
             .field("fanout_last_pub", &self.fanout_last_pub)
             .field("mcache", &self.mcache)
             .field("heartbeat", &self.heartbeat)
+            .field("px_peers", &self.px_peers)
+            .field("outbound_peers", &self.outbound_peers)
+            .field("count_received_ihave", &self.count_received_ihave)
+            .field("count_sent_iwant", &self.count_sent_iwant)
             .finish()
     }
 }
