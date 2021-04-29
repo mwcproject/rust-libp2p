@@ -768,7 +768,10 @@ where
                 self.forward_msg(msg_id, raw_message, Some(propagation_source))?;
                 return Ok(true);
             }
-            MessageAcceptance::Reject => RejectReason::ValidationFailed,
+            MessageAcceptance::Reject => {
+                self.disconnect_peer(propagation_source.clone(), true );
+                RejectReason::ValidationFailed
+            },
             MessageAcceptance::Ignore => RejectReason::ValidationIgnored,
         };
 
@@ -2697,7 +2700,7 @@ where
                     rpc_list.push(new_rpc.clone());
                 }
             };
-        };
+        }
 
         macro_rules! add_item {
             ($object: ident, $type: ident ) => {
