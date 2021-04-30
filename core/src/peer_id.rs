@@ -171,7 +171,7 @@ impl PeerId {
     }
 
     // Generate an onion address from an ed25519_dalek public key
-    fn onion_v3_from_pubkey(pub_key: &ed25519_dalek::PublicKey) -> String {
+    pub fn onion_v3_from_pubkey(pub_key: &ed25519_dalek::PublicKey) -> String {
         // calculate checksum
         let mut hasher = Sha3_256::new();
         hasher.input(b".onion checksum");
