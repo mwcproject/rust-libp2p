@@ -915,7 +915,7 @@ impl ConnectionCounters {
 
     /// The total number of connections, both pending and established.
     pub fn num_connections(&self) -> u32 {
-        self.num_pending() + self.num_established()
+        self.num_established()
     }
 
     /// The total number of pending connections, both incoming and outgoing.
