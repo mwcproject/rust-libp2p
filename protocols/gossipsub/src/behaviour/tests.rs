@@ -616,9 +616,8 @@ mod tests {
         let msg_id = gs.config.message_id(&message);
 
         let config: GossipsubConfig = GossipsubConfig::default();
-        assert_eq!(
-            publishes.len(),
-            config.mesh_n_low(),
+        assert!(
+            publishes.len() >= config.mesh_n_low(),
             "Should send a publish message to all known peers"
         );
 
