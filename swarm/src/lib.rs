@@ -1152,7 +1152,7 @@ mod tests {
         multiaddr,
         transport
     };
-    use libp2p_noise as noise;
+    use mwc_libp2p_noise as noise;
     use super::*;
 
     fn new_test_swarm<T, O>(handler_proto: T) -> Swarm<CallTraceBehaviour<MockBehaviour<T, O>>>

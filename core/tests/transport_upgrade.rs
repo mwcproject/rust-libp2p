@@ -25,7 +25,7 @@ use libp2p_core::identity;
 use libp2p_core::transport::{Transport, MemoryTransport};
 use libp2p_core::upgrade::{self, UpgradeInfo, InboundUpgrade, OutboundUpgrade};
 use libp2p_mplex::MplexConfig;
-use libp2p_noise as noise;
+use mwc_libp2p_noise as noise;
 use multiaddr::{Multiaddr, Protocol};
 use rand::random;
 use std::{io, pin::Pin};

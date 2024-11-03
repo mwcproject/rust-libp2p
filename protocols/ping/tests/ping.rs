@@ -29,7 +29,7 @@ use libp2p_core::{
     upgrade
 };
 use libp2p_mplex as mplex;
-use libp2p_noise as noise;
+use mwc_libp2p_noise as noise;
 use libp2p_ping::*;
 use libp2p_swarm::{Swarm, SwarmEvent};
 use libp2p_tcp::TcpConfig;

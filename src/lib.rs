@@ -204,7 +204,7 @@ pub use libp2p_mdns as mdns;
 #[cfg(feature = "noise")]
 #[cfg_attr(docsrs, doc(cfg(feature = "noise")))]
 #[doc(inline)]
-pub use libp2p_noise as noise;
+pub use mwc_libp2p_noise as noise;
 #[cfg(feature = "ping")]
 #[cfg_attr(docsrs, doc(cfg(feature = "ping")))]
 #[doc(inline)]

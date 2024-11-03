@@ -284,7 +284,7 @@ mod tests {
         Transport,
         upgrade
     };
-    use libp2p_noise as noise;
+    use mwc_libp2p_noise as noise;
     use libp2p_tcp::TcpConfig;
     use libp2p_swarm::{Swarm, SwarmEvent};
     use libp2p_mplex::MplexConfig;

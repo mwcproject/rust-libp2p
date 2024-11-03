@@ -22,7 +22,7 @@ use libp2p_core::identity;
 use snow::error::Error as SnowError;
 use std::{error::Error, fmt, io};
 
-/// libp2p_noise error type.
+/// mwc_libp2p_noise error type.
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum NoiseError {
