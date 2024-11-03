@@ -41,9 +41,9 @@ use mwc_libp2p_core::{
     upgrade,
     multihash::{Code, Multihash, MultihashDigest},
 };
-use mwc_mwc_libp2p_noise as noise;
-use libp2p_swarm::Swarm;
-use libp2p_yamux as yamux;
+use mwc_libp2p_noise as noise;
+use mwc_libp2p_swarm::Swarm;
+use mwc_libp2p_yamux as yamux;
 use quickcheck::*;
 use rand::{Rng, random, thread_rng, rngs::StdRng, SeedableRng};
 use std::{collections::{HashSet, HashMap}, time::Duration, num::NonZeroUsize, u64};

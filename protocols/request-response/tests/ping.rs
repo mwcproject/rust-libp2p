@@ -29,10 +29,10 @@ use mwc_libp2p_core::{
     transport::{self, Transport},
     upgrade::{self, read_one, write_one}
 };
-use mwc_mwc_libp2p_noise::{NoiseConfig, X25519Spec, Keypair};
+use mwc_libp2p_noise::{NoiseConfig, X25519Spec, Keypair};
 use mwc_libp2p_request_response::*;
-use libp2p_swarm::{Swarm, SwarmEvent};
-use libp2p_tcp::TcpConfig;
+use mwc_libp2p_swarm::{Swarm, SwarmEvent};
+use mwc_libp2p_tcp::TcpConfig;
 use futures::{prelude::*, channel::mpsc, executor::LocalPool, task::SpawnExt};
 use rand::{self, Rng};
 use std::{io, iter};
@@ -310,7 +310,7 @@ fn mk_transport() -> (PeerId, transport::Boxed<(PeerId, StreamMuxerBox)>) {
         .nodelay(true)
         .upgrade(upgrade::Version::V1)
         .authenticate(NoiseConfig::xx(noise_keys).into_authenticated())
-        .multiplex(libp2p_yamux::YamuxConfig::default())
+        .multiplex(mwc_libp2p_yamux::YamuxConfig::default())
         .boxed())
 }
 

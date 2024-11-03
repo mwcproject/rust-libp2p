@@ -20,8 +20,8 @@
 
 use futures::{future, prelude::*};
 use mwc_libp2p_core::{transport::Transport, upgrade};
-use libp2p_deflate::DeflateConfig;
-use libp2p_tcp::TcpConfig;
+use mwc_libp2p_deflate::DeflateConfig;
+use mwc_libp2p_tcp::TcpConfig;
 use quickcheck::{QuickCheck, RngCore, TestResult};
 
 #[test]

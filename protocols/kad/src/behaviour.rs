@@ -38,7 +38,7 @@ use crate::query::{Query, QueryId, QueryPool, QueryConfig, QueryPoolState};
 use crate::record::{self, store::{self, RecordStore}, Record, ProviderRecord};
 use fnv::{FnvHashMap, FnvHashSet};
 use mwc_libp2p_core::{ConnectedPoint, Multiaddr, PeerId, connection::ConnectionId};
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     DialPeerCondition,
     NetworkBehaviour,
     NetworkBehaviourAction,

@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-tcp"
+name = "mwc-libp2p-tcp"
 edition = "2018"
 description = "TCP/IP transport protocol for libp2p"
 version = "0.27.1"

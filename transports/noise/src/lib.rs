@@ -40,8 +40,8 @@
 //!
 //! ```
 //! use mwc_libp2p_core::{identity, Transport, upgrade};
-//! use libp2p_tcp::TcpConfig;
-//! use mwc_mwc_libp2p_noise::{Keypair, X25519Spec, NoiseConfig};
+//! use mwc_libp2p_tcp::TcpConfig;
+//! use mwc_libp2p_noise::{Keypair, X25519Spec, NoiseConfig};
 //!
 //! # fn main() {
 //! let id_keys = identity::Keypair::generate_ed25519();

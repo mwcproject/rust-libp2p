@@ -28,7 +28,7 @@ use mwc_libp2p_core::{
     connection::ConnectionId,
     multiaddr::Protocol
 };
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     NetworkBehaviour,
     NetworkBehaviourAction,
     PollParameters,

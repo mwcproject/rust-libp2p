@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-yamux"
+name = "mwc-libp2p-yamux"
 edition = "2018"
 description = "Yamux multiplexing protocol for libp2p"
 version = "0.30.1"

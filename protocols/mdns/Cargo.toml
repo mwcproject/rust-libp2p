@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-mdns"
+name = "mwc-libp2p-mdns"
 edition = "2018"
 version = "0.28.1"
 description = "Implementation of the libp2p mDNS discovery method"
@@ -17,7 +17,7 @@ futures = "0.3.8"
 if-watch = "0.1.8"
 lazy_static = "1.4.0"
 mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
-libp2p-swarm = { version = "0.27.0", path = "../../swarm" }
+mwc-libp2p-swarm = { version = "0.27.0", path = "../../swarm" }
 log = "0.4.11"
 rand = "0.7.3"
 smallvec = "1.5.0"

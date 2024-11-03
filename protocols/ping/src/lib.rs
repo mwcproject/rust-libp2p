@@ -37,7 +37,7 @@
 //! > **Note**: The ping protocol does not keep otherwise idle connections alive
 //! > by default, see [`PingConfig::with_keep_alive`] for changing this behaviour.
 //!
-//! [`Swarm`]: libp2p_swarm::Swarm
+//! [`Swarm`]: mwc_libp2p_swarm::Swarm
 //! [`Transport`]: mwc_libp2p_core::Transport
 
 pub mod protocol;
@@ -47,7 +47,7 @@ pub use handler::{PingConfig, PingResult, PingSuccess, PingFailure};
 use handler::PingHandler;
 
 use mwc_libp2p_core::{Multiaddr, PeerId, connection::ConnectionId};
-use libp2p_swarm::{NetworkBehaviour, NetworkBehaviourAction, PollParameters};
+use mwc_libp2p_swarm::{NetworkBehaviour, NetworkBehaviourAction, PollParameters};
 use std::{collections::VecDeque, task::Context, task::Poll};
 use void::Void;
 

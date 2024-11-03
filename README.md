@@ -37,12 +37,12 @@ The main components of this repository are structured as follows:
     e.g. (sub)stream multiplexing protocols on top of (typically TCP) connections.
     Multiplexing protocols are (mandatory) `Transport` upgrades.
 
-  * `swarm/`: The implementation of `libp2p-swarm` building on `mwc-libp2p-core`
+  * `swarm/`: The implementation of `mwc-libp2p-swarm` building on `mwc-libp2p-core`
     with the central interfaces `NetworkBehaviour` and `ProtocolsHandler` used
     to implement application protocols (see `protocols/`).
 
   * `protocols/`: Implementations of application protocols based on the
-    `libp2p-swarm` APIs.
+    `mwc-libp2p-swarm` APIs.
 
   * `misc/`: Utility libraries.
 

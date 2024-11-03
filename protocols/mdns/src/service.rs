@@ -63,13 +63,13 @@ lazy_static! {
 /// # use futures::prelude::*;
 /// # use futures::executor::block_on;
 /// # use mwc_libp2p_core::{identity, Multiaddr, PeerId};
-/// # use libp2p_mdns::service::{MdnsPacket, build_query_response, build_service_discovery_response};
+/// # use mwc_libp2p_mdns::service::{MdnsPacket, build_query_response, build_service_discovery_response};
 /// # use std::{io, time::Duration, task::Poll};
 /// # fn main() {
 /// # let my_peer_id = PeerId::from_public_key(identity::Keypair::generate_ed25519().public());
 /// # let my_listened_addrs: Vec<Multiaddr> = vec![];
 /// # async {
-/// # let mut service = libp2p_mdns::service::MdnsService::new().await.unwrap();
+/// # let mut service = mwc_libp2p_mdns::service::MdnsService::new().await.unwrap();
 /// let _future_to_poll = async {
 ///     let (mut service, packet) = service.next().await;
 ///

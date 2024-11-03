@@ -147,7 +147,7 @@ fn tcp_transport(split_send_size: usize) -> BenchTransport {
     let mut mplex = mplex::MplexConfig::default();
     mplex.set_split_send_size(split_send_size);
 
-    libp2p_tcp::TcpConfig::new().nodelay(true)
+    mwc_libp2p_tcp::TcpConfig::new().nodelay(true)
         .upgrade(upgrade::Version::V1)
         .authenticate(PlainText2Config { local_public_key })
         .multiplex(mplex)

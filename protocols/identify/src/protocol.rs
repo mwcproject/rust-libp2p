@@ -205,7 +205,7 @@ fn parse_proto_msg(msg: impl AsRef<[u8]>) -> Result<(IdentifyInfo, Multiaddr), i
 #[cfg(test)]
 mod tests {
     use crate::protocol::{IdentifyInfo, RemoteInfo, IdentifyProtocolConfig};
-    use libp2p_tcp::TcpConfig;
+    use mwc_libp2p_tcp::TcpConfig;
     use futures::{prelude::*, channel::oneshot};
     use mwc_libp2p_core::{
         identity,

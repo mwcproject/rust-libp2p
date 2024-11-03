@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-deflate"
+name = "mwc-libp2p-deflate"
 edition = "2018"
 description = "Deflate encryption protocol for libp2p"
 version = "0.27.1"
@@ -16,6 +16,6 @@ flate2 = "1.0"
 
 [dev-dependencies]
 async-std = "1.6.2"
-libp2p-tcp = { path = "../../transports/tcp" }
+mwc-libp2p-tcp = { path = "../../transports/tcp" }
 quickcheck = "0.9"
 rand = "0.7"

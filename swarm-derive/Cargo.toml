@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-swarm-derive"
+name = "mwc-libp2p-swarm-derivee"
 edition = "2018"
 description = "Procedural macros of mwc-libp2p-core"
 version = "0.22.0"

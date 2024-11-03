@@ -29,7 +29,7 @@
   [PR 1825](https://github.com/libp2p/rust-libp2p/pull/1825/).
 
 - Tweak the naming in the `MplexConfig` API for better
-  consistency with `libp2p-yamux`.
+  consistency with `mwc-libp2p-yamux`.
   [PR 1822](https://github.com/libp2p/rust-libp2p/pull/1822).
 
 - Update dependencies.

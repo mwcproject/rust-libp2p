@@ -25,7 +25,7 @@ use mwc_libp2p_core::upgrade::{
     OutboundUpgrade,
     ReadOneError
 };
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     NegotiatedSubstream,
     KeepAlive,
     SubstreamProtocol,

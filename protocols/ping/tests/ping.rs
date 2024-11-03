@@ -29,11 +29,11 @@ use mwc_libp2p_core::{
     upgrade
 };
 use mwc_libp2p_mplex as mplex;
-use mwc_mwc_libp2p_noise as noise;
+use mwc_libp2p_noise as noise;
 use mwc_libp2p_ping::*;
-use libp2p_swarm::{Swarm, SwarmEvent};
-use libp2p_tcp::TcpConfig;
-use libp2p_yamux as yamux;
+use mwc_libp2p_swarm::{Swarm, SwarmEvent};
+use mwc_libp2p_tcp::TcpConfig;
+use mwc_libp2p_yamux as yamux;
 use futures::{prelude::*, channel::mpsc};
 use quickcheck::*;
 use rand::prelude::*;

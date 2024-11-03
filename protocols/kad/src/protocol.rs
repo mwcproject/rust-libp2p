@@ -581,7 +581,7 @@ where
 mod tests {
 
     /*// TODO: restore
-    use self::libp2p_tcp::TcpConfig;
+    use self::mwc_libp2p_tcp::TcpConfig;
     use self::tokio::runtime::current_thread::Runtime;
     use futures::{Future, Sink, Stream};
     use mwc_libp2p_core::{PeerId, PublicKey, Transport};

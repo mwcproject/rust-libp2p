@@ -4,11 +4,11 @@
 
 # 0.26.0 [2020-12-17]
 
-- Update `libp2p-swarm` and `mwc-libp2p-core`.
+- Update `mwc-libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.25.0 [2020-11-25]
 
-- Update `libp2p-swarm` and `mwc-libp2p-core`.
+- Update `mwc-libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.24.0 [2020-11-09]
 
@@ -16,7 +16,7 @@
 
 # 0.23.0 [2020-10-16]
 
-- Update `libp2p-swarm` and `mwc-libp2p-core`.
+- Update `mwc-libp2p-swarm` and `mwc-libp2p-core`.
 
 - Ensure the outbound ping is flushed before awaiting
   the response. Otherwise the behaviour depends on
@@ -25,7 +25,7 @@
 
 # 0.22.0 [2020-09-09]
 
-- Update `libp2p-swarm` and `mwc-libp2p-core`.
+- Update `mwc-libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.21.0 [2020-08-18]
 
@@ -33,7 +33,7 @@
 a single substream for outbound pings, addressing
 [#1601](https://github.com/libp2p/rust-libp2p/issues/1601).
 
-- Bump `mwc-libp2p-core` and `libp2p-swarm` dependencies.
+- Bump `mwc-libp2p-core` and `mwc-libp2p-swarm` dependencies.
 
 # 0.20.0 [2020-07-01]
 

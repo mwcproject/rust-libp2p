@@ -78,7 +78,7 @@ use mwc_libp2p_core::{
     PeerId,
     connection::ConnectionId,
 };
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     DialPeerCondition,
     NetworkBehaviour,
     NetworkBehaviourAction,

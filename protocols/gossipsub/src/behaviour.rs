@@ -41,7 +41,7 @@ use mwc_libp2p_core::{
     connection::ConnectionId, identity::Keypair, multiaddr::Protocol::Ip4,
     multiaddr::Protocol::Ip6, ConnectedPoint, Multiaddr, PeerId, SimplePushSerializer
 };
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     DialPeerCondition, NetworkBehaviour, NetworkBehaviourAction, NotifyHandler, PollParameters,
     ProtocolsHandler,
 };

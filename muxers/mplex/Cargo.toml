@@ -26,7 +26,7 @@ async-std = "1.7.0"
 criterion = "0.3"
 env_logger = "0.8"
 futures = "0.3"
-libp2p-tcp = { path = "../../transports/tcp" }
+mwc-libp2p-tcp = { path = "../../transports/tcp" }
 mwc-libp2p-plaintext = { path = "../../transports/plaintext" }
 quickcheck = "0.9"
 rand = "0.7"

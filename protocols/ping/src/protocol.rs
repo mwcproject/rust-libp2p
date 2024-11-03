@@ -20,7 +20,7 @@
 
 use futures::prelude::*;
 use mwc_libp2p_core::{InboundUpgrade, OutboundUpgrade, UpgradeInfo};
-use libp2p_swarm::NegotiatedSubstream;
+use mwc_libp2p_swarm::NegotiatedSubstream;
 use rand::{distributions, prelude::*};
 use std::{io, iter, time::Duration};
 use void::Void;

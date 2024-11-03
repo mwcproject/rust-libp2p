@@ -37,8 +37,8 @@ use mwc_libp2p_gossipsub::{
     ValidationMode,
 };
 use mwc_libp2p_plaintext::PlainText2Config;
-use libp2p_swarm::Swarm;
-use libp2p_yamux as yamux;
+use mwc_libp2p_swarm::Swarm;
+use mwc_libp2p_yamux as yamux;
 
 struct Graph {
     pub nodes: Vec<(Multiaddr, Swarm<Gossipsub>)>,

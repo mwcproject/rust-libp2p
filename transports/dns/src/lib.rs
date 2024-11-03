@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-//! # libp2p-dns
+//! # mwc-libp2p-dns
 //!
 //! This crate provides the type `DnsConfig` that allows one to resolve the `/dns4/` and `/dns6/`
 //! components of multiaddresses.
@@ -67,7 +67,7 @@ impl<T> DnsConfig<T> {
     pub fn with_resolve_threads(inner: T, num_threads: usize) -> Result<DnsConfig<T>, io::Error> {
         let thread_pool = futures::executor::ThreadPool::builder()
             .pool_size(num_threads)
-            .name_prefix("libp2p-dns-")
+            .name_prefix("mwc-libp2p-dns-")
             .create()?;
 
         trace!("Created a DNS thread pool");

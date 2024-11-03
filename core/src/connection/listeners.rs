@@ -44,7 +44,7 @@ use std::{collections::VecDeque, fmt, pin::Pin};
 /// use futures::prelude::*;
 /// use mwc_libp2p_core::connection::{ListenersEvent, ListenersStream};
 ///
-/// let mut listeners = ListenersStream::new(libp2p_tcp::TcpConfig::new());
+/// let mut listeners = ListenersStream::new(mwc_libp2p_tcp::TcpConfig::new());
 ///
 /// // Ask the `listeners` to start listening on the given multiaddress.
 /// listeners.listen_on("/ip4/0.0.0.0/tcp/0".parse().unwrap()).unwrap();

@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-dns"
+name = "mwc-libp2p-dns"
 edition = "2018"
 description = "DNS transport implementation for libp2p"
 version = "0.27.0"

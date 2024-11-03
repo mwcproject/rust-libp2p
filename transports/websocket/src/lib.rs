@@ -188,7 +188,7 @@ where
 #[cfg(test)]
 mod tests {
     use mwc_libp2p_core::Multiaddr;
-    use libp2p_tcp as tcp;
+    use mwc_libp2p_tcp as tcp;
     use futures::prelude::*;
     use mwc_libp2p_core::{Transport, multiaddr::Protocol};
     use super::WsConfig;

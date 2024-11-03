@@ -34,7 +34,7 @@ use futures::{
 use mwc_libp2p_core::{
     upgrade::{UpgradeError, NegotiationError},
 };
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     SubstreamProtocol,
     protocols_handler::{
         KeepAlive,

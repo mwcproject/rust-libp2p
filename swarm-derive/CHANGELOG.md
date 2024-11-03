@@ -1,10 +1,10 @@
 # 0.22.0 [2021-02-15]
 
-- Rename the crate to `libp2p-swarm-derive`.
+- Rename the crate to `mwc-libp2p-swarm-derivee`.
 
 # 0.21.0 [2020-11-25]
 
-- Update for compatibility with `libp2p-swarm-0.25`.
+- Update for compatibility with `mwc-libp2p-swarm-0.25`.
 
 # 0.20.2 [2020-07-28]
 

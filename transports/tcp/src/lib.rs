@@ -24,7 +24,7 @@
 //!
 //! This crate provides a `TcpConfig` and `TokioTcpConfig`, depending on
 //! the enabled features, which implement the `Transport` trait for use as a
-//! transport with `mwc-libp2p-core` or `libp2p-swarm`.
+//! transport with `mwc-libp2p-core` or `mwc-libp2p-swarm`.
 
 mod provider;
 
@@ -256,7 +256,7 @@ where
     /// #[cfg(feature = "async-io")]
     /// #[async_std::main]
     /// async fn main() -> std::io::Result<()> {
-    /// use libp2p_tcp::TcpConfig;
+    /// use mwc_libp2p_tcp::TcpConfig;
     ///
     /// let listen_addr1: Multiaddr = "/ip4/127.0.0.1/tcp/9001".parse().unwrap();
     /// let listen_addr2: Multiaddr = "/ip4/127.0.0.1/tcp/9002".parse().unwrap();

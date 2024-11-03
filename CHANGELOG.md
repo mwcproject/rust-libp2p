@@ -4,8 +4,8 @@
 ## Main APIs
 
 - [`mwc-libp2p-core` CHANGELOG](core/CHANGELOG.md)
-- [`libp2p-swarm` CHANGELOG](swarm/CHANGELOG.md)
-- [`libp2p-swarm-derive` CHANGELOG](swarm-derive/CHANGELOG.md)
+- [`mwc-libp2p-swarm` CHANGELOG](swarm/CHANGELOG.md)
+- [`mwc-libp2p-swarm-derivee` CHANGELOG](swarm-derive/CHANGELOG.md)
 
 ## Application Protocols
 
@@ -13,26 +13,26 @@
 - [`mwc-libp2p-gossipsub` CHANGELOG](protocols/gossipsub/CHANGELOG.md)
 - [`mwc-libp2p-identify` CHANGELOG](protocols/identify/CHANGELOG.md)
 - [`mwc-libp2p-kad` CHANGELOG](protocols/kad/CHANGELOG.md)
-- [`libp2p-mdns` CHANGELOG](protocols/mdns/CHANGELOG.md)
+- [`mwc-libp2p-mdns` CHANGELOG](protocols/mdns/CHANGELOG.md)
 - [`mwc-libp2p-ping` CHANGELOG](protocols/ping/CHANGELOG.md)
 - [`mwc-libp2p-request-response` CHANGELOG](protocols/request-response/CHANGELOG.md)
 
 ## Transport Protocols & Upgrades
 
-- [`libp2p-deflate` CHANGELOG](transports/deflate/CHANGELOG.md)
-- [`libp2p-dns` CHANGELOG](transports/dns/CHANGELOG.md)
+- [`mwc-libp2p-deflate` CHANGELOG](transports/deflate/CHANGELOG.md)
+- [`mwc-libp2p-dns` CHANGELOG](transports/dns/CHANGELOG.md)
 - [`mwc-libp2p-noise` CHANGELOG](transports/noise/CHANGELOG.md)
 - [`mwc-libp2p-plaintext` CHANGELOG](transports/plaintext/CHANGELOG.md)
 - [`mwc-libp2p-pnet` CHANGELOG](transports/pnet/CHANGELOG.md)
-- [`libp2p-tcp` CHANGELOG](transports/tcp/CHANGELOG.md)
-- [`libp2p-uds` CHANGELOG](transports/uds/CHANGELOG.md)
-- [`libp2p-wasm-ext` CHANGELOG](transports/wasm-ext/CHANGELOG.md)
-- [`libp2p-websocket` CHANGELOG](transports/websocket/CHANGELOG.md)
+- [`mwc-libp2p-tcp` CHANGELOG](transports/tcp/CHANGELOG.md)
+- [`mwc-libp2p-uds` CHANGELOG](transports/uds/CHANGELOG.md)
+- [`mwc-libp2p-wasm-ext` CHANGELOG](transports/wasm-ext/CHANGELOG.md)
+- [`mwc-libp2p-websocket` CHANGELOG](transports/websocket/CHANGELOG.md)
 
 ## Multiplexers
 
 - [`mwc-libp2p-mplex` CHANGELOG](muxers/mplex/CHANGELOG.md)
-- [`libp2p-yamux` CHANGELOG](muxers/yamux/CHANGELOG.md)
+- [`mwc-libp2p-yamux` CHANGELOG](muxers/yamux/CHANGELOG.md)
 
 ## Utilities
 
@@ -43,14 +43,14 @@
 
 ## Version 0.35.1 [2021-02-17]
 
-- Update `libp2p-yamux` to latest patch version.
+- Update `mwc-libp2p-yamux` to latest patch version.
 
 ## Version 0.35.0 [2021-02-15]
 
-- Use `libp2p-swarm-derive`, the former `mwc-libp2p-core-derive`.
+- Use `mwc-libp2p-swarm-derivee`, the former `mwc-libp2p-core-derive`.
 
-- Update `libp2p-deflate`, `mwc-libp2p-gossipsub`, `libp2p-mdns`, `mwc-libp2p-request-response`,
-  `libp2p-swarm` and `libp2p-tcp`.
+- Update `mwc-libp2p-deflate`, `mwc-libp2p-gossipsub`, `mwc-libp2p-mdns`, `mwc-libp2p-request-response`,
+  `mwc-libp2p-swarm` and `mwc-libp2p-tcp`.
 
 ## Version 0.34.0 [2021-01-12]
 
@@ -65,19 +65,19 @@
 
 ## Version 0.32.2 [2020-12-10]
 
-- Update `libp2p-websocket`.
+- Update `mwc-libp2p-websocket`.
 
 ## Version 0.32.1 [2020-12-09]
 
-- Update minimum patch version of `libp2p-websocket`.
+- Update minimum patch version of `mwc-libp2p-websocket`.
 
 ## Version 0.32.0 [2020-12-08]
 
 - Update `mwc-libp2p-request-response`.
 
-- Update to `libp2p-mdns-0.26`.
+- Update to `mwc-libp2p-mdns-0.26`.
 
-- Update `libp2p-websocket` minimum patch version.
+- Update `mwc-libp2p-websocket` minimum patch version.
 
 ## Version 0.31.2 [2020-12-02]
 
@@ -85,7 +85,7 @@
 
 ## Version 0.31.1 [2020-11-26]
 
-- Bump minimum `libp2p-tcp` patch version.
+- Bump minimum `mwc-libp2p-tcp` patch version.
 
 ## Version 0.31.0 [2020-11-25]
 
@@ -97,7 +97,7 @@
 
 ## Version 0.30.0 [2020-11-09]
 
-- Update `libp2p-mdns`, `libp2p-tcp` and `libp2p-uds` as well as `mwc-libp2p-core`
+- Update `mwc-libp2p-mdns`, `mwc-libp2p-tcp` and `mwc-libp2p-uds` as well as `mwc-libp2p-core`
   and all its dependers.
 
 ## Version 0.29.1 [2020-10-20]
@@ -108,7 +108,7 @@
 
 - Update `mwc-libp2p-core`, `mwc-libp2p-floodsub`, `mwc-libp2p-gossipsub`, `mwc-libp2p-mplex`,
   `mwc-libp2p-noise`, `mwc-libp2p-plaintext`, `mwc-libp2p-pnet`, `mwc-libp2p-request-response`,
-  `libp2p-swarm`, `libp2p-tcp`, `libp2p-websocket` and `parity-multiaddr`.
+  `mwc-libp2p-swarm`, `mwc-libp2p-tcp`, `mwc-libp2p-websocket` and `parity-multiaddr`.
 
 ## Version 0.28.1 [2020-09-10]
 
@@ -116,18 +116,18 @@
 
 ## Version 0.28.0 [2020-09-09]
 
-- Update `libp2p-yamux` to `0.25.0`. *Step 4 of 4 in a multi-release
-  upgrade process.* See the `libp2p-yamux` CHANGELOG for details.
+- Update `mwc-libp2p-yamux` to `0.25.0`. *Step 4 of 4 in a multi-release
+  upgrade process.* See the `mwc-libp2p-yamux` CHANGELOG for details.
 
 ## Version 0.27.0 [2020-09-09]
 
-- Update `libp2p-yamux` to `0.24.0`. *Step 3 of 4 in a multi-release
-  upgrade process.* See the `libp2p-yamux` CHANGELOG for details.
+- Update `mwc-libp2p-yamux` to `0.24.0`. *Step 3 of 4 in a multi-release
+  upgrade process.* See the `mwc-libp2p-yamux` CHANGELOG for details.
 
 ## Version 0.26.0 [2020-09-09]
 
-- Update `libp2p-yamux` to `0.23.0`. *Step 2 of 4 in a multi-release
-  upgrade process.* See the `libp2p-yamux` CHANGELOG for details.
+- Update `mwc-libp2p-yamux` to `0.23.0`. *Step 2 of 4 in a multi-release
+  upgrade process.* See the `mwc-libp2p-yamux` CHANGELOG for details.
 
 ## Version 0.25.0 [2020-09-09]
 
@@ -135,21 +135,21 @@
   SECIO, add an explicit dependency on `libp2p-secio`. However,
   transitioning to `mwc-libp2p-noise` is strongly recommended.
 
-- Update `libp2p-yamux` to `0.22.0`. *This version starts a multi-release
-  upgrade process.* See the `libp2p-yamux` CHANGELOG for details.
+- Update `mwc-libp2p-yamux` to `0.22.0`. *This version starts a multi-release
+  upgrade process.* See the `mwc-libp2p-yamux` CHANGELOG for details.
 
 - Bump `mwc-libp2p-noise` to `0.24`. See the `mwc-libp2p-noise`
 changelog for details about the `LegacyConfig`.
 
-- The `ProtocolsHandler` in `libp2p-swarm` has a new associated type
+- The `ProtocolsHandler` in `mwc-libp2p-swarm` has a new associated type
   `InboundOpenInfo` ([PR 1714]).
 
 [PR 1714]: https://github.com/libp2p/rust-libp2p/pull/1714
 
 ## Version 0.24.0 [2020-08-18]
 
-- Update `mwc-libp2p-core`, `mwc-libp2p-gossipsub`, `mwc-libp2p-kad`, `libp2p-mdns`,
-  `mwc-libp2p-ping`, `mwc-libp2p-request-response`, `libp2p-swarm` and dependent crates.
+- Update `mwc-libp2p-core`, `mwc-libp2p-gossipsub`, `mwc-libp2p-kad`, `mwc-libp2p-mdns`,
+  `mwc-libp2p-ping`, `mwc-libp2p-request-response`, `mwc-libp2p-swarm` and dependent crates.
 
 ## Version 0.23.0 (2020-08-03)
 
@@ -172,7 +172,7 @@ must not be skipped!
 
 ## Version 0.21.1 (2020-07-02)
 
-- Bump `libp2p-websockets` lower bound.
+- Bump `mwc-libp2p-websockets` lower bound.
 
 ## Version 0.21.0 (2020-07-01)
 
@@ -194,7 +194,7 @@ must not be skipped!
 
 ## Version 0.19.0 (2020-05-18)
 
-- `mwc-libp2p-core`, `libp2p-swarm`: Added support for multiple dialing
+- `mwc-libp2p-core`, `mwc-libp2p-swarm`: Added support for multiple dialing
   attempts per peer, with a configurable limit.
   [PR 1506](https://github.com/libp2p/rust-libp2p/pull/1506)
 
@@ -209,7 +209,7 @@ must not be skipped!
 - `mwc-libp2p-core`: Make the number of events buffered to/from tasks configurable.
   [PR 1574](https://github.com/libp2p/rust-libp2p/pull/1574)
 
-- `libp2p-dns`, `parity-multiaddr`: Added support for the `/dns` multiaddr
+- `mwc-libp2p-dns`, `parity-multiaddr`: Added support for the `/dns` multiaddr
   protocol. Additionally, the `multiaddr::from_url` function will now use
   `/dns` instead of `/dns4`.
   [PR 1575](https://github.com/libp2p/rust-libp2p/pull/1575)
@@ -239,12 +239,12 @@ must not be skipped!
   an event.
   [PR 1567](https://github.com/libp2p/rust-libp2p/pull/1567)
 
-- `libp2p-tcp`, `libp2p`: Made the `libp2p-tcp/async-std` feature flag
+- `mwc-libp2p-tcp`, `libp2p`: Made the `mwc-libp2p-tcp/async-std` feature flag
   disabled by default, and split the `libp2p/tcp` feature in two:
   `tcp-async-std` and `tcp-tokio`. `tcp-async-std` is still enabled by default.
   [PR 1471](https://github.com/libp2p/rust-libp2p/pull/1471)
 
-- `libp2p-tcp`: On listeners started with an IPv6 multi-address the socket
+- `mwc-libp2p-tcp`: On listeners started with an IPv6 multi-address the socket
   option `IPV6_V6ONLY` is set to true. Instead of relying on IPv4-mapped IPv6
   address support, two listeners can be started if IPv4 and IPv6 should both
   be supported. IPv4 listener addresses are not affected by this change.
@@ -252,7 +252,7 @@ must not be skipped!
 
 ## Version 0.18.1 (2020-04-17)
 
-- `libp2p-swarm`: Make sure inject_dial_failure is called in all situations.
+- `mwc-libp2p-swarm`: Make sure inject_dial_failure is called in all situations.
   [PR 1549](https://github.com/libp2p/rust-libp2p/pull/1549)
 
 ## Version 0.18.0 (2020-04-09)
@@ -269,7 +269,7 @@ must not be skipped!
 - `mwc-libp2p-kad`: Return peers independent of record existence.
   [PR 1544](https://github.com/libp2p/rust-libp2p/pull/1544)
 
-- `libp2p-wasm-ext`: Fix "parsed is null" errors being thrown.
+- `mwc-libp2p-wasm-ext`: Fix "parsed is null" errors being thrown.
   [PR 1535](https://github.com/libp2p/rust-libp2p/pull/1535)
 
 ## Version 0.17.0 (2020-04-02)
@@ -278,24 +278,24 @@ must not be skipped!
   [PR 1460](https://github.com/libp2p/rust-libp2p/pull/1460)
 - `mwc-libp2p-core`: Remove `poll_broadcast`.
   [PR 1527](https://github.com/libp2p/rust-libp2p/pull/1527)
-- `mwc-libp2p-core`, `libp2p-swarm`: Report addresses of closed listeners.
+- `mwc-libp2p-core`, `mwc-libp2p-swarm`: Report addresses of closed listeners.
   [PR 1485](https://github.com/libp2p/rust-libp2p/pull/1485)
 - `mwc-libp2p-core`: Support for multiple connections per peer and configurable connection limits.
   See [PR #1440](https://github.com/libp2p/rust-libp2p/pull/1440),
   [PR #1519](https://github.com/libp2p/rust-libp2p/pull/1519) and
   [issue #912](https://github.com/libp2p/rust-libp2p/issues/912) for details.
 
-- `libp2p-swarm`: Pass the cause of closing a listener to `inject_listener_closed`.
+- `mwc-libp2p-swarm`: Pass the cause of closing a listener to `inject_listener_closed`.
   [PR 1517](https://github.com/libp2p/rust-libp2p/pull/1517)
-- `libp2p-swarm`: Support for multiple connections per peer and configurable connection limits.
+- `mwc-libp2p-swarm`: Support for multiple connections per peer and configurable connection limits.
   See [PR #1440](https://github.com/libp2p/rust-libp2p/pull/1440),
   [PR #1519](https://github.com/libp2p/rust-libp2p/pull/1519) and
   [issue #912](https://github.com/libp2p/rust-libp2p/issues/912) for details.
-- `libp2p-swarm`: The `SwarmEvent` now returns more events.
+- `mwc-libp2p-swarm`: The `SwarmEvent` now returns more events.
   [PR 1515](https://github.com/libp2p/rust-libp2p/pull/1515)
-- `libp2p-swarm`: New `protocols_handler::multi` module.
+- `mwc-libp2p-swarm`: New `protocols_handler::multi` module.
   [PR 1497](https://github.com/libp2p/rust-libp2p/pull/1497)
-- `libp2p-swarm`: Allow configuration of outbound substreams.
+- `mwc-libp2p-swarm`: Allow configuration of outbound substreams.
   [PR 1521](https://github.com/libp2p/rust-libp2p/pull/1521)
 
 - `mwc-libp2p-kad`: Providers returned from a lookup are now deduplicated.
@@ -322,7 +322,7 @@ must not be skipped!
 ## Version 0.16.2 (2020-02-28)
 
 - Fixed yamux connections not properly closing and being stuck in the `CLOSE_WAIT` state.
-- Added a `websocket_transport()` function in `libp2p-wasm-ext`, behind a Cargo feature.
+- Added a `websocket_transport()` function in `mwc-libp2p-wasm-ext`, behind a Cargo feature.
 - Fixed ambiguity in `IntoProtocolsHandler::select` vs `ProtocolsHandler::select` in the `NetworkBehaviour` custom derive.
 
 ## Version 0.16.1 (2020-02-18)
@@ -344,16 +344,16 @@ must not be skipped!
 - Changed mwc-libp2p-noise to grow its memory buffers dynamically. This should reduce the overall memory usage of connections that use the noise encryption.
 - Fixed mwc-libp2p-gossipsub to no longer close the connection if the inbound substream is closed by the remote.
 - All crates prefixed with `libp2p-` now use the same version number.
-- Added a new variant `ListenerEvent::Error` for listeners to report non-fatal errors. `libp2p-tcp` uses this variant to report errors that happen on remote sockets before they have been accepted and errors when trying to determine the local machine's IP address.
+- Added a new variant `ListenerEvent::Error` for listeners to report non-fatal errors. `mwc-libp2p-tcp` uses this variant to report errors that happen on remote sockets before they have been accepted and errors when trying to determine the local machine's IP address.
 
 ## Version 0.15.0 (2020-01-24)
 
 - Added `mwc-libp2p-gossipsub`.
 - Added `SwarmBuilder::executor` to allow configuring which tasks executor to use.
-- Added `TokioTcpConfig` in `libp2p-tcp` and `TokioUdsConfig` in `libp2p-uds` behind `tokio` features. These structs use `tokio` and require a `tokio` runtime executor to be configured via `SwarmBuilder::executor`.
+- Added `TokioTcpConfig` in `mwc-libp2p-tcp` and `TokioUdsConfig` in `mwc-libp2p-uds` behind `tokio` features. These structs use `tokio` and require a `tokio` runtime executor to be configured via `SwarmBuilder::executor`.
 - Changed the `OutboundUpgrade` and `InboundUpgrade` traits to no longer be passed a `Negotiated<C>` but just a `C`. The `Negotiated` is now in the trait bounds requirements of `ProtocolsHandler`.
-- Fixed `libp2p-wasm-ext` returning `Err(WouldBlock)` rather than `Pending`.
-- Fixed `libp2p-dns` not segregating DNS4 and DNS6.
+- Fixed `mwc-libp2p-wasm-ext` returning `Err(WouldBlock)` rather than `Pending`.
+- Fixed `mwc-libp2p-dns` not segregating DNS4 and DNS6.
 - Removed some unnecessary `Unpin` requirements on futures.
 - Changed `Mdns::new` to no longer be `async`.
 - Fixed `mwc-libp2p-kad` keeping connections alive when it shouldn't.
@@ -368,7 +368,7 @@ must not be skipped!
 - Added the `Swarm::next` and `Swarm::next_event` functions and the `SwarmEvent` enum.
 - Changed `ProtocolsHandler::poll` to no longer return an error. Instead, `ProtocolsHandlerEvent` has a new `Close` variant which corresponds to what an error represented before.
 - Changed all the traits that have a `poll` function (i.e. `NetworkBehaviour`, `ProtocolsHandler`, `NodeHandler`) to have an additional `&mut Context` parameter, to reflect the changes in the `Future` trait.
-- Revamped the API of `libp2p_websockets::framed`.
+- Revamped the API of `mwc_libp2p_websockets::framed`.
 - Added protocol string to `Error::UnknownProtocolString`.
 
 ## Version 0.13.2 (2020-01-02)
@@ -409,7 +409,7 @@ must not be skipped!
 - `mwc-libp2p-kad`: Completed the core functionality of the record storage API, thereby extending the `RecordStore` for provider records. All records expire by default and are subject to regular republication and caching as per the Kademlia spec(s). Expiration and publication intervals are configurable through the `KademliaConfig`.
 - `mwc-libp2p-kad`: The routing table now never stores peers without a known (listen) address. In particular, on receiving a new inbound connection, the Kademlia behaviour now emits `KademliaEvent::UnroutablePeer` to indicate that in order for the peer to be added to the routing table and hence considered a reachable node in the DHT, a listen address of the peer must be discovered and reported via `Kademlia::add_address`. This is usually achieved through the use of the `Identify` protocol on the same connection(s).
 - `mwc-libp2p-kad`: Documentation updates.
-- Extracted the `swarm` and `protocols_handler`-related contents from `mwc-libp2p-core` to a new `libp2p-swarm` crate.
+- Extracted the `swarm` and `protocols_handler`-related contents from `mwc-libp2p-core` to a new `mwc-libp2p-swarm` crate.
 - Renamed `RawSwarm` to `Network`.
 - Added `Floodsub::publish_any`.
 - Replaced unbounded channels with bounded ones at the boundary between the `Network` (formerly `RawSwarm`) and `NodeHandler`. The node handlers will now wait if the main task is busy, instead of continuing to push events to the channel.
@@ -436,7 +436,7 @@ must not be skipped!
 - Rewrote the implementation of WebSockets. It now properly supports WebSockets Secure (WSS).
 - Removed `BrowserWsConfig`. Please use `libp2p::wasm_ext::ExtTransport` instead.
 - Added a `Path` parameter to `multiaddr::Protocol::WS` and `WSS`. The string representation when a path is present is respectively `x-parity-ws/<path>` and `x-parity-wss/<path>` where `<path>` is percent-encoded.
-- Fixed an issue with `libp2p-tcp` where the wrong listened address was returned, if the actual address was loopback.
+- Fixed an issue with `mwc-libp2p-tcp` where the wrong listened address was returned, if the actual address was loopback.
 - Added `core::upgrade::OptionalUpgrade`.
 - Added some utility functions in `core::identity::secp256k1`.
 - It is now possible to inject an artificial connection in the `RawSwarm`.
@@ -457,7 +457,7 @@ must not be skipped!
 - Fixed `Kademlia::add_providing` taking a `PeerId` instead of a `Multihash`.
 - Fixed various bugs in the implementation of `Kademlia`.
 - Added `OneSubstreamMuxer`.
-- Added the `libp2p-wasm-ext` crate.
+- Added the `mwc-libp2p-wasm-ext` crate.
 - Added `multiaddr::from_url`.
 - Added `OptionalTransport`.
 

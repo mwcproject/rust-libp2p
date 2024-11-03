@@ -29,7 +29,7 @@ use mwc_libp2p_core::{
     connection::ConnectionId,
     upgrade::{ReadOneError, UpgradeError}
 };
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     AddressScore,
     NegotiatedSubstream,
     NetworkBehaviour,
@@ -284,9 +284,9 @@ mod tests {
         Transport,
         upgrade
     };
-    use mwc_mwc_libp2p_noise as noise;
-    use libp2p_tcp::TcpConfig;
-    use libp2p_swarm::{Swarm, SwarmEvent};
+    use mwc_libp2p_noise as noise;
+    use mwc_libp2p_tcp::TcpConfig;
+    use mwc_libp2p_swarm::{Swarm, SwarmEvent};
     use mwc_libp2p_mplex::MplexConfig;
 
     fn transport() -> (identity::PublicKey, transport::Boxed<(PeerId, StreamMuxerBox)>) {

@@ -66,8 +66,8 @@
 //!
 //! ## Gossipsub
 //!
-//! The [`Gossipsub`] struct implements the [`libp2p_swarm::NetworkBehaviour`] trait allowing it to
-//! act as the routing behaviour in a [`libp2p_swarm::Swarm`]. This struct requires an instance of
+//! The [`Gossipsub`] struct implements the [`mwc_libp2p_swarm::NetworkBehaviour`] trait allowing it to
+//! act as the routing behaviour in a [`mwc_libp2p_swarm::Swarm`]. This struct requires an instance of
 //! [`mwc_libp2p_core::PeerId`] and [`GossipsubConfig`].
 //!
 //! [`Gossipsub`]: struct.Gossipsub.html
@@ -85,10 +85,10 @@
 //!
 //! // Set up an encrypted TCP Transport over the Mplex
 //! // This is test transport (memory).
-//! let noise_keys = mwc_mwc_libp2p_noise::Keypair::<mwc_mwc_libp2p_noise::X25519Spec>::new().into_authentic(&local_key).unwrap();
+//! let noise_keys = mwc_libp2p_noise::Keypair::<mwc_libp2p_noise::X25519Spec>::new().into_authentic(&local_key).unwrap();
 //! let transport = MemoryTransport::default()
 //!            .upgrade(mwc_libp2p_core::upgrade::Version::V1)
-//!            .authenticate(mwc_mwc_libp2p_noise::NoiseConfig::xx(noise_keys).into_authenticated())
+//!            .authenticate(mwc_libp2p_noise::NoiseConfig::xx(noise_keys).into_authenticated())
 //!            .multiplex(mwc_libp2p_mplex::MplexConfig::new())
 //!            .boxed();
 //!
@@ -109,7 +109,7 @@
 //!     // subscribe to the topic
 //!     gossipsub.subscribe(&topic);
 //!     // create the swarm
-//!     libp2p_swarm::Swarm::new(
+//!     mwc_libp2p_swarm::Swarm::new(
 //!         transport,
 //!         gossipsub,
 //!         local_peer_id,
@@ -118,7 +118,7 @@
 //!
 //! // Listen on a memory transport.
 //! let memory: Multiaddr = mwc_libp2p_core::multiaddr::Protocol::Memory(10).into();
-//! let addr = libp2p_swarm::Swarm::listen_on(&mut swarm, memory).unwrap();
+//! let addr = mwc_libp2p_swarm::Swarm::listen_on(&mut swarm, memory).unwrap();
 //! println!("Listening on {:?}", addr);
 //! ```
 

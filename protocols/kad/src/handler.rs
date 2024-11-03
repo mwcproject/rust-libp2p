@@ -24,7 +24,7 @@ use crate::protocol::{
 };
 use crate::record::{self, Record};
 use futures::prelude::*;
-use libp2p_swarm::{
+use mwc_libp2p_swarm::{
     IntoProtocolsHandler,
     KeepAlive,
     NegotiatedSubstream,

@@ -19,7 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 use mwc_libp2p_core::{muxing, upgrade, Transport};
-use libp2p_tcp::TcpConfig;
+use mwc_libp2p_tcp::TcpConfig;
 use futures::{prelude::*, channel::oneshot};
 use std::sync::Arc;
 

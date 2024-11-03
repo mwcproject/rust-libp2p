@@ -1044,7 +1044,7 @@ where TBehaviour: NetworkBehaviour,
         // If no executor has been explicitly configured, try to set up a thread pool.
         let network_cfg = self.network_config.or_else_with_executor(|| {
             match ThreadPoolBuilder::new()
-                .name_prefix("libp2p-swarm-task-")
+                .name_prefix("mwc-libp2p-swarm-task-")
                 .create()
             {
                 Ok(tp) => {
@@ -1152,7 +1152,7 @@ mod tests {
         multiaddr,
         transport
     };
-    use mwc_mwc_libp2p_noise as noise;
+    use mwc_libp2p_noise as noise;
     use super::*;
 
     fn new_test_swarm<T, O>(handler_proto: T) -> Swarm<CallTraceBehaviour<MockBehaviour<T, O>>>
