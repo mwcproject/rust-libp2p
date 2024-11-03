@@ -19,11 +19,11 @@
 // DEALINGS IN THE SOFTWARE.
 
 use async_std::task;
-use libp2p::mdns::service::{MdnsPacket, MdnsService};
+use mwc_libp2p::mdns::service::{MdnsPacket, MdnsService};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    // This example provides passive discovery of the libp2p nodes on the
+    // This example provides passive discovery of the mwc_libp2p nodes on the
     // network that send mDNS queries and answers.
     task::block_on(async move {
         let mut service = MdnsService::new().await?;
@@ -31,12 +31,12 @@ fn main() -> Result<(), Box<dyn Error>> {
             let (srv, packet) = service.next().await;
             match packet {
                 MdnsPacket::Query(query) => {
-                    // We detected a libp2p mDNS query on the network. In a real application, you
+                    // We detected a mwc_libp2p mDNS query on the network. In a real application, you
                     // probably want to answer this query by doing `query.respond(...)`.
                     println!("Detected query from {:?}", query.remote_addr());
                 }
                 MdnsPacket::Response(response) => {
-                    // We detected a libp2p mDNS response on the network. Responses are for
+                    // We detected a mwc_libp2p mDNS response on the network. Responses are for
                     // everyone and not just for the requester, which makes it possible to
                     // passively listen.
                     for peer in response.discovered_peers() {

@@ -20,7 +20,7 @@
 
 use crate::protocol::{RemoteInfo, IdentifyProtocolConfig, ReplySubstream};
 use futures::prelude::*;
-use libp2p_core::upgrade::{
+use mwc_libp2p_core::upgrade::{
     InboundUpgrade,
     OutboundUpgrade,
     ReadOneError

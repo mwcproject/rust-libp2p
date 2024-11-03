@@ -29,7 +29,7 @@ use crate::LegacyConfig;
 use crate::error::NoiseError;
 use crate::protocol::{Protocol, PublicKey, KeypairIdentity};
 use crate::io::{NoiseOutput, framed::NoiseFramed};
-use libp2p_core::identity;
+use mwc_libp2p_core::identity;
 use futures::prelude::*;
 use futures::task;
 use prost::Message;

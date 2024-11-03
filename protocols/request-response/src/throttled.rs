@@ -39,7 +39,7 @@ mod codec;
 use codec::{Codec, Message, ProtocolWrapper, Type};
 use crate::handler::{RequestProtocol, RequestResponseHandler, RequestResponseHandlerEvent};
 use futures::ready;
-use libp2p_core::{ConnectedPoint, connection::ConnectionId, Multiaddr, PeerId};
+use mwc_libp2p_core::{ConnectedPoint, connection::ConnectionId, Multiaddr, PeerId};
 use libp2p_swarm::{NetworkBehaviour, NetworkBehaviourAction, PollParameters};
 use lru::LruCache;
 use std::{collections::{HashMap, HashSet, VecDeque}, task::{Context, Poll}};

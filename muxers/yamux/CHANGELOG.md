@@ -8,23 +8,23 @@
 
 # 0.29.0 [2020-12-17]
 
-- Update `libp2p-core`.
+- Update `mwc-libp2p-core`.
 
 # 0.28.0 [2020-11-25]
 
-- Update `libp2p-core`.
+- Update `mwc-libp2p-core`.
 
 # 0.27.0 [2020-11-09]
 
 - Tweak the naming in the `MplexConfig` API for better
-  consistency with `libp2p-mplex`.
+  consistency with `mwc-libp2p-mplex`.
   [PR 1822](https://github.com/libp2p/rust-libp2p/pull/1822).
 
 - Update dependencies.
 
 # 0.26.0 [2020-10-16]
 
-- Update `libp2p-core`.
+- Update `mwc-libp2p-core`.
 
 # 0.25.0 [2020-09-09]
 
@@ -60,20 +60,20 @@
   directly upgrade from version `0.21.0` to `0.25.0` without any intermediate
   upgrades.
 
-- Bump `libp2p-core` dependency.
+- Bump `mwc-libp2p-core` dependency.
 
 [1]: https://github.com/paritytech/yamux/issues/92
 
 # 0.21.0 [2020-08-18]
 
-- Bump `libp2p-core` dependency.
+- Bump `mwc-libp2p-core` dependency.
 
 - Allow overriding the mode (client/server), e.g. in the context
 of TCP hole punching. [PR 1691](https://github.com/libp2p/rust-libp2p/pull/1691).
 
 # 0.20.0 [2020-07-01]
 
-- Update `libp2p-core`, i.e. `StreamMuxer::poll_inbound` has been renamed
+- Update `mwc-libp2p-core`, i.e. `StreamMuxer::poll_inbound` has been renamed
   to `poll_event` and returns a `StreamMuxerEvent`.
 
 # 0.19.1 [2020-06-22]

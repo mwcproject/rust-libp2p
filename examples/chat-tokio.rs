@@ -68,7 +68,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // Create a keypair for authenticated encryption of the transport.
     let noise_keys = noise::Keypair::<noise::X25519Spec>::new()
         .into_authentic(&id_keys)
-        .expect("Signing libp2p-noise static DH keypair failed.");
+        .expect("Signing mwc-libp2p-noise static DH keypair failed.");
 
     // Create a tokio-based TCP transport use noise for authenticated
     // encryption and Mplex for multiplexing of substreams on a TCP stream.

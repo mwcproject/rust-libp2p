@@ -21,7 +21,7 @@
 use crate::NegotiatedSubstream;
 
 use futures::prelude::*;
-use libp2p_core::upgrade;
+use mwc_libp2p_core::upgrade;
 
 /// Implemented automatically on all types that implement [`UpgradeInfo`](upgrade::UpgradeInfo)
 /// and `Send + 'static`.

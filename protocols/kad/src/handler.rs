@@ -33,7 +33,7 @@ use libp2p_swarm::{
     ProtocolsHandlerEvent,
     ProtocolsHandlerUpgrErr
 };
-use libp2p_core::{
+use mwc_libp2p_core::{
     ConnectedPoint,
     PeerId,
     either::EitherOutput,

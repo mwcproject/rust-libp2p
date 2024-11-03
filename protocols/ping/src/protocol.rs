@@ -19,7 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 use futures::prelude::*;
-use libp2p_core::{InboundUpgrade, OutboundUpgrade, UpgradeInfo};
+use mwc_libp2p_core::{InboundUpgrade, OutboundUpgrade, UpgradeInfo};
 use libp2p_swarm::NegotiatedSubstream;
 use rand::{distributions, prelude::*};
 use std::{io, iter, time::Duration};
@@ -116,7 +116,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use libp2p_core::{
+    use mwc_libp2p_core::{
         multiaddr::multiaddr,
         transport::{
             Transport,

@@ -33,7 +33,7 @@
 //!
 
 use futures::{prelude::*, future::Ready};
-use libp2p_core::{transport::ListenerEvent, transport::TransportError, Multiaddr, Transport};
+use mwc_libp2p_core::{transport::ListenerEvent, transport::TransportError, Multiaddr, Transport};
 use parity_send_wrapper::SendWrapper;
 use std::{collections::VecDeque, error, fmt, io, mem, pin::Pin, task::Context, task::Poll};
 use wasm_bindgen::{JsCast, prelude::*};
@@ -508,8 +508,8 @@ impl From<JsValue> for JsErr {
     }
 }
 
-impl From<libp2p_core::multiaddr::Error> for JsErr {
-    fn from(err: libp2p_core::multiaddr::Error) -> JsErr {
+impl From<mwc_libp2p_core::multiaddr::Error> for JsErr {
+    fn from(err: mwc_libp2p_core::multiaddr::Error) -> JsErr {
         JsValue::from_str(&err.to_string()).into()
     }
 }

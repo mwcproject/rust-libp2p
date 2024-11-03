@@ -31,7 +31,7 @@ use futures::{
     future::poll_fn,
 };
 use futures_timer::Delay;
-use libp2p_core::{
+use mwc_libp2p_core::{
     connection::{ConnectedPoint, ConnectionId},
     PeerId,
     Transport,
@@ -41,7 +41,7 @@ use libp2p_core::{
     upgrade,
     multihash::{Code, Multihash, MultihashDigest},
 };
-use mwc_libp2p_noise as noise;
+use mwc_mwc_libp2p_noise as noise;
 use libp2p_swarm::Swarm;
 use libp2p_yamux as yamux;
 use quickcheck::*;

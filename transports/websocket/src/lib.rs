@@ -27,7 +27,7 @@ pub mod tls;
 use error::Error;
 use framed::Connection;
 use futures::{future::BoxFuture, prelude::*, stream::BoxStream, ready};
-use libp2p_core::{
+use mwc_libp2p_core::{
     ConnectedPoint,
     Transport,
     multiaddr::Multiaddr,
@@ -187,10 +187,10 @@ where
 
 #[cfg(test)]
 mod tests {
-    use libp2p_core::Multiaddr;
+    use mwc_libp2p_core::Multiaddr;
     use libp2p_tcp as tcp;
     use futures::prelude::*;
-    use libp2p_core::{Transport, multiaddr::Protocol};
+    use mwc_libp2p_core::{Transport, multiaddr::Protocol};
     use super::WsConfig;
 
     #[test]

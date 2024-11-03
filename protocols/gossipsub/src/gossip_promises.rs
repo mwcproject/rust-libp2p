@@ -21,7 +21,7 @@
 use crate::error::ValidationError;
 use crate::peer_score::RejectReason;
 use crate::MessageId;
-use libp2p_core::PeerId;
+use mwc_libp2p_core::PeerId;
 use log::debug;
 use rand::seq::SliceRandom;
 use rand::thread_rng;

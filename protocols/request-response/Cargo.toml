@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-request-response"
+name = "mwc-libp2p-request-response"
 edition = "2018"
 description = "Generic Request/Response Protocols"
 version = "0.9.1"
@@ -13,7 +13,7 @@ categories = ["network-programming", "asynchronous"]
 async-trait = "0.1"
 bytes = "1"
 futures = "0.3.1"
-libp2p-core = { version = "0.27.0", path = "../../core" }
+mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
 libp2p-swarm = { version = "0.27.0", path = "../../swarm" }
 log = "0.4.11"
 lru = "0.6"
@@ -25,7 +25,7 @@ wasm-timer = "0.2"
 
 [dev-dependencies]
 async-std = "1.6.2"
-mwc-libp2p-noise = { path = "../../transports/noise" }
+mwc-mwc-libp2p-noise = { path = "../../transports/noise" }
 libp2p-tcp = { path = "../../transports/tcp" }
 libp2p-yamux = { path = "../../muxers/yamux" }
 rand = "0.7"

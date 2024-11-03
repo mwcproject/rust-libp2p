@@ -4,11 +4,11 @@
 
 # 0.28.0 [2020-12-17]
 
-- Update `libp2p-core`.
+- Update `mwc-libp2p-core`.
 
 # 0.27.0 [2020-11-25]
 
-- Update `libp2p-core`.
+- Update `mwc-libp2p-core`.
 
 # 0.26.0 [2020-11-09]
 
@@ -20,7 +20,7 @@
 
 # 0.24.0 [2020-09-09]
 
-- Bump `libp2p-core` dependency.
+- Bump `mwc-libp2p-core` dependency.
 
 - Remove fallback legacy handshake payload decoding by default.
 To continue supporting inbound legacy handshake payloads,
@@ -28,7 +28,7 @@ To continue supporting inbound legacy handshake payloads,
 
 # 0.23.0 [2020-08-18]
 
-- Bump `libp2p-core` dependency.
+- Bump `mwc-libp2p-core` dependency.
 
 # 0.22.0 [2020-08-03]
 
@@ -46,7 +46,7 @@ into a `LegacyConfig` option. However, all legacy configuration
 options will eventually be removed, so this is primarily to allow
 delaying the handshake upgrade or keeping compatibility with a network
 whose peers are slow to upgrade, without having to freeze the
-version of `libp2p-noise` altogether in these projects.
+version of `mwc-libp2p-noise` altogether in these projects.
 
 # 0.21.0 [2020-07-17]
 

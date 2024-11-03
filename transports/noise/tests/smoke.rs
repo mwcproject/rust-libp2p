@@ -20,10 +20,10 @@
 
 use async_io::Async;
 use futures::{future::{self, Either}, prelude::*};
-use libp2p_core::identity;
-use libp2p_core::upgrade::{self, Negotiated, apply_inbound, apply_outbound};
-use libp2p_core::transport::{Transport, ListenerEvent};
-use mwc_libp2p_noise::{Keypair, X25519, X25519Spec, NoiseConfig, RemoteIdentity, NoiseError, NoiseOutput};
+use mwc_libp2p_core::identity;
+use mwc_libp2p_core::upgrade::{self, Negotiated, apply_inbound, apply_outbound};
+use mwc_libp2p_core::transport::{Transport, ListenerEvent};
+use mwc_mwc_libp2p_noise::{Keypair, X25519, X25519Spec, NoiseConfig, RemoteIdentity, NoiseError, NoiseOutput};
 use libp2p_tcp::TcpConfig;
 use log::info;
 use quickcheck::QuickCheck;
@@ -31,7 +31,7 @@ use std::{convert::TryInto, io, net::TcpStream};
 
 #[allow(dead_code)]
 fn core_upgrade_compat() {
-    // Tests API compaibility with the libp2p-core upgrade API,
+    // Tests API compaibility with the mwc-libp2p-core upgrade API,
     // i.e. if it compiles, the "test" is considered a success.
     let id_keys = identity::Keypair::generate_ed25519();
     let dh_keys = Keypair::<X25519>::new().into_authentic(&id_keys).unwrap();

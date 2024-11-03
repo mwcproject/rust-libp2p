@@ -155,17 +155,17 @@
 #![doc(html_favicon_url = "https://libp2p.io/img/favicon.png")]
 
 #[cfg(feature = "pnet")]
-use libp2p_pnet::{PnetConfig, PreSharedKey};
+use mwc_libp2p_pnet::{PnetConfig, PreSharedKey};
 
 pub use bytes;
 pub use futures;
 #[doc(inline)]
 pub use multiaddr;
 #[doc(inline)]
-pub use libp2p_core::multihash;
+pub use mwc_libp2p_core::multihash;
 
 #[doc(inline)]
-pub use libp2p_core as core;
+pub use mwc_libp2p_core as core;
 #[cfg(feature = "deflate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "deflate")))]
 #[cfg(not(any(target_os = "emscripten", target_os = "wasi", target_os = "unknown")))]
@@ -179,23 +179,23 @@ pub use libp2p_dns as dns;
 #[cfg(feature = "identify")]
 #[cfg_attr(docsrs, doc(cfg(feature = "identify")))]
 #[doc(inline)]
-pub use libp2p_identify as identify;
+pub use mwc_libp2p_identify as identify;
 #[cfg(feature = "kad")]
 #[cfg_attr(docsrs, doc(cfg(feature = "kad")))]
 #[doc(inline)]
-pub use libp2p_kad as kad;
+pub use mwc_libp2p_kad as kad;
 #[cfg(feature = "floodsub")]
 #[cfg_attr(docsrs, doc(cfg(feature = "floodsub")))]
 #[doc(inline)]
-pub use libp2p_floodsub as floodsub;
+pub use mwc_libp2p_floodsub as floodsub;
 #[cfg(feature = "gossipsub")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gossipsub")))]
 #[doc(inline)]
-pub use libp2p_gossipsub as gossipsub;
+pub use mwc_libp2p_gossipsub as gossipsub;
 #[cfg(feature = "mplex")]
 #[cfg_attr(docsrs, doc(cfg(feature = "mplex")))]
 #[doc(inline)]
-pub use libp2p_mplex as mplex;
+pub use mwc_libp2p_mplex as mplex;
 #[cfg(feature = "mdns")]
 #[cfg_attr(docsrs, doc(cfg(feature = "mdns")))]
 #[cfg(not(any(target_os = "emscripten", target_os = "wasi", target_os = "unknown")))]
@@ -204,15 +204,15 @@ pub use libp2p_mdns as mdns;
 #[cfg(feature = "noise")]
 #[cfg_attr(docsrs, doc(cfg(feature = "noise")))]
 #[doc(inline)]
-pub use mwc_libp2p_noise as noise;
+pub use mwc_mwc_libp2p_noise as noise;
 #[cfg(feature = "ping")]
 #[cfg_attr(docsrs, doc(cfg(feature = "ping")))]
 #[doc(inline)]
-pub use libp2p_ping as ping;
+pub use mwc_libp2p_ping as ping;
 #[cfg(feature = "plaintext")]
 #[cfg_attr(docsrs, doc(cfg(feature = "plaintext")))]
 #[doc(inline)]
-pub use libp2p_plaintext as plaintext;
+pub use mwc_libp2p_plaintext as plaintext;
 #[doc(inline)]
 pub use libp2p_swarm as swarm;
 #[cfg(any(feature = "tcp-async-io", feature = "tcp-tokio"))]
@@ -240,11 +240,11 @@ pub use libp2p_yamux as yamux;
 #[cfg(feature = "pnet")]
 #[cfg_attr(docsrs, doc(cfg(feature = "pnet")))]
 #[doc(inline)]
-pub use libp2p_pnet as pnet;
+pub use mwc_libp2p_pnet as pnet;
 #[cfg(feature = "request-response")]
 #[cfg_attr(docsrs, doc(cfg(feature = "request-response")))]
 #[doc(inline)]
-pub use libp2p_request_response as request_response;
+pub use mwc_libp2p_request_response as request_response;
 
 mod transport_ext;
 
@@ -297,7 +297,7 @@ pub fn build_tcp_ws_noise_mplex_yamux(keypair: identity::Keypair)
 
     let noise_keys = noise::Keypair::<noise::X25519Spec>::new()
         .into_authentic(&keypair)
-        .expect("Signing libp2p-noise static DH keypair failed.");
+        .expect("Signing mwc-libp2p-noise static DH keypair failed.");
 
     Ok(transport
         .upgrade(core::upgrade::Version::V1)
@@ -328,7 +328,7 @@ pub fn build_tcp_ws_pnet_noise_mplex_yamux(keypair: identity::Keypair, psk: PreS
 
     let noise_keys = noise::Keypair::<noise::X25519Spec>::new()
         .into_authentic(&keypair)
-        .expect("Signing libp2p-noise static DH keypair failed.");
+        .expect("Signing mwc-libp2p-noise static DH keypair failed.");
 
     Ok(transport
         .and_then(move |socket, _| PnetConfig::new(psk).handshake(socket))

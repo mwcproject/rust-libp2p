@@ -2,7 +2,7 @@
 #![allow(dead_code)]
 
 use futures::prelude::*;
-use libp2p_core::{
+use mwc_libp2p_core::{
     Multiaddr,
     PeerId,
     Transport,
@@ -18,8 +18,8 @@ use libp2p_core::{
     transport,
     upgrade,
 };
-use libp2p_mplex as mplex;
-use mwc_libp2p_noise as noise;
+use mwc_libp2p_mplex as mplex;
+use mwc_mwc_libp2p_noise as noise;
 use libp2p_tcp as tcp;
 use std::{io, pin::Pin, task::Context, task::Poll};
 

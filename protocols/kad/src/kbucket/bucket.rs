@@ -420,7 +420,7 @@ where
 
 #[cfg(test)]
 mod tests {
-    use libp2p_core::PeerId;
+    use mwc_libp2p_core::PeerId;
     use rand::Rng;
     use std::collections::VecDeque;
     use super::*;

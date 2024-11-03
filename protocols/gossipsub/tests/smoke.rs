@@ -29,14 +29,14 @@ use std::{
 };
 
 use futures::StreamExt;
-use libp2p_core::{
+use mwc_libp2p_core::{
     identity, multiaddr::Protocol, transport::MemoryTransport, upgrade, Multiaddr, Transport,
 };
-use libp2p_gossipsub::{
+use mwc_libp2p_gossipsub::{
     Gossipsub, GossipsubConfigBuilder, GossipsubEvent, IdentTopic as Topic, MessageAuthenticity,
     ValidationMode,
 };
-use libp2p_plaintext::PlainText2Config;
+use mwc_libp2p_plaintext::PlainText2Config;
 use libp2p_swarm::Swarm;
 use libp2p_yamux as yamux;
 
@@ -172,7 +172,7 @@ fn build_node() -> (Multiaddr, Swarm<Gossipsub>) {
     let mut addr: Multiaddr = Protocol::Memory(port).into();
     Swarm::listen_on(&mut swarm, addr.clone()).unwrap();
 
-    addr = addr.with(libp2p_core::multiaddr::Protocol::P2p(
+    addr = addr.with(mwc_libp2p_core::multiaddr::Protocol::P2p(
         public_key.into_peer_id().into(),
     ));
 

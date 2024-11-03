@@ -26,9 +26,9 @@ use criterion::{black_box, criterion_group, criterion_main, Criterion, Throughpu
 use futures::channel::oneshot;
 use futures::prelude::*;
 use futures::future::poll_fn;
-use libp2p_core::{PeerId, Transport, StreamMuxer, identity, upgrade, transport, muxing, multiaddr::multiaddr, Multiaddr};
-use libp2p_mplex as mplex;
-use libp2p_plaintext::PlainText2Config;
+use mwc_libp2p_core::{PeerId, Transport, StreamMuxer, identity, upgrade, transport, muxing, multiaddr::multiaddr, Multiaddr};
+use mwc_libp2p_mplex as mplex;
+use mwc_libp2p_plaintext::PlainText2Config;
 use std::time::Duration;
 
 type BenchTransport = transport::Boxed<(PeerId, muxing::StreamMuxerBox)>;

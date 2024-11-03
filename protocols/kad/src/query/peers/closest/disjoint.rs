@@ -20,7 +20,7 @@
 
 use super::*;
 use crate::kbucket::{Key, KeyBytes};
-use libp2p_core::PeerId;
+use mwc_libp2p_core::PeerId;
 use std::{
     collections::HashMap,
     iter::{Cycle, Map, Peekable},
@@ -432,7 +432,7 @@ mod tests {
     use super::*;
 
     use crate::K_VALUE;
-    use libp2p_core::multihash::{Code, Multihash};
+    use mwc_libp2p_core::multihash::{Code, Multihash};
     use quickcheck::*;
     use rand::{Rng, seq::SliceRandom};
     use std::collections::HashSet;

@@ -20,7 +20,7 @@
 
 //! Transports, upgrades, multiplexing and node handling of *libp2p*.
 //!
-//! The main concepts of libp2p-core are:
+//! The main concepts of mwc-libp2p-core are:
 //!
 //! - A [`PeerId`] is a unique global identifier for a node on the network.
 //!   Each node must have a different [`PeerId`]. Normally, a [`PeerId`] is the

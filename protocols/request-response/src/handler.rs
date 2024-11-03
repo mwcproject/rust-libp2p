@@ -31,7 +31,7 @@ use futures::{
     prelude::*,
     stream::FuturesUnordered
 };
-use libp2p_core::{
+use mwc_libp2p_core::{
     upgrade::{UpgradeError, NegotiationError},
 };
 use libp2p_swarm::{

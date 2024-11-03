@@ -33,7 +33,7 @@
 //! to work, the ipfs node needs to be configured to use gossipsub.
 use async_std::{io, task};
 use futures::{future, prelude::*};
-use libp2p::{
+use mwc_libp2p::{
     core::{
         either::EitherTransport, muxing::StreamMuxerBox, transport, transport::upgrade::Version,
     },
@@ -108,7 +108,7 @@ fn get_psk(path: Box<Path>) -> std::io::Result<Option<String>> {
     }
 }
 
-/// for a multiaddr that ends with a peer id, this strips this suffix. Rust-libp2p
+/// for a multiaddr that ends with a peer id, this strips this suffix. Rust-mwc_libp2p
 /// only supports dialing to an address without providing the peer id.
 fn strip_peer_id(addr: &mut Multiaddr) {
     let last = addr.pop();
@@ -117,7 +117,7 @@ fn strip_peer_id(addr: &mut Multiaddr) {
             let mut addr = Multiaddr::empty();
             addr.push(Protocol::P2p(peer_id));
             println!(
-                "removing peer id {} so this address can be dialed by rust-libp2p",
+                "removing peer id {} so this address can be dialed by rust-mwc_libp2p",
                 addr
             );
         }
@@ -127,7 +127,7 @@ fn strip_peer_id(addr: &mut Multiaddr) {
 }
 
 /// parse a legacy multiaddr (replace ipfs with p2p), and strip the peer id
-/// so it can be dialed by rust-libp2p
+/// so it can be dialed by rust-mwc_libp2p
 fn parse_legacy_multiaddr(text: &str) -> Result<Multiaddr, Box<dyn Error>> {
     let sanitized = text
         .split('/')

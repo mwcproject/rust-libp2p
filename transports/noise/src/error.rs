@@ -18,11 +18,11 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-use libp2p_core::identity;
+use mwc_libp2p_core::identity;
 use snow::error::Error as SnowError;
 use std::{error::Error, fmt, io};
 
-/// mwc_libp2p_noise error type.
+/// mwc_mwc_libp2p_noise error type.
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum NoiseError {

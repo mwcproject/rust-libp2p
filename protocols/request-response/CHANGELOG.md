@@ -14,7 +14,7 @@
 
 # 0.8.0 [2020-12-17]
 
-- Update `libp2p-swarm` and `libp2p-core`.
+- Update `libp2p-swarm` and `mwc-libp2p-core`.
 
 - Emit `InboundFailure::ConnectionClosed` for inbound requests that failed due
   to the underlying connection closing.
@@ -33,7 +33,7 @@
 
 # 0.6.0 [2020-11-25]
 
-- Update `libp2p-swarm` and `libp2p-core`.
+- Update `libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.5.0 [2020-11-09]
 
@@ -49,13 +49,13 @@
   request-response protocol via `RequestResponse::throttled()`.
   [PR 1726](https://github.com/libp2p/rust-libp2p/pull/1726).
 
-- Update `libp2p-swarm` and `libp2p-core`.
+- Update `libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.2.0 [2020-08-18]
 
 - Fixed connection keep-alive, permitting connections to close due
   to inactivity.
-- Bump `libp2p-core` and `libp2p-swarm` dependencies.
+- Bump `mwc-libp2p-core` and `libp2p-swarm` dependencies.
 
 # 0.1.1
 

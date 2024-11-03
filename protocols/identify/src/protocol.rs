@@ -20,7 +20,7 @@
 
 use crate::structs_proto;
 use futures::prelude::*;
-use libp2p_core::{
+use mwc_libp2p_core::{
     Multiaddr,
     PublicKey,
     upgrade::{self, InboundUpgrade, OutboundUpgrade, UpgradeInfo}
@@ -207,7 +207,7 @@ mod tests {
     use crate::protocol::{IdentifyInfo, RemoteInfo, IdentifyProtocolConfig};
     use libp2p_tcp::TcpConfig;
     use futures::{prelude::*, channel::oneshot};
-    use libp2p_core::{
+    use mwc_libp2p_core::{
         identity,
         Transport,
         upgrade::{self, apply_outbound, apply_inbound}

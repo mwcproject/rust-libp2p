@@ -14,11 +14,11 @@
 
 # 0.26.0 [2020-12-17]
 
-- Update `libp2p-swarm` and `libp2p-core`.
+- Update `libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.25.0 [2020-11-25]
 
-- Update `libp2p-swarm` and `libp2p-core`.
+- Update `libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.24.0 [2020-11-09]
 
@@ -30,7 +30,7 @@
 
 # 0.22.0 [2020-09-09]
 
-- Update `libp2p-swarm` and `libp2p-core`.
+- Update `libp2p-swarm` and `mwc-libp2p-core`.
 
 # 0.21.0 [2020-08-18]
 
@@ -40,7 +40,7 @@
 
 - `Debug` instance for `Gossipsub`. [PR 1673](https://github.com/libp2p/rust-libp2p/pull/1673).
 
-- Bump `libp2p-core` and `libp2p-swarm` dependency.
+- Bump `mwc-libp2p-core` and `libp2p-swarm` dependency.
 
 # 0.20.0 [2020-07-01]
 

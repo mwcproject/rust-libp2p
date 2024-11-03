@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-kad"
+name = "mwc-libp2p-kad"
 edition = "2018"
 description = "Kademlia protocol for libp2p"
 version = "0.28.1"
@@ -17,7 +17,7 @@ fnv = "1.0"
 asynchronous-codec = "0.6"
 futures = "0.3.1"
 log = "0.4"
-libp2p-core = { version = "0.27.0", path = "../../core" }
+mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
 libp2p-swarm = { version = "0.27.0", path = "../../swarm" }
 prost = "0.7"
 rand = "0.7.2"
@@ -30,7 +30,7 @@ void = "1.0"
 
 [dev-dependencies]
 futures-timer = "3.0"
-mwc-libp2p-noise = { path = "../../transports/noise" }
+mwc-mwc-libp2p-noise = { path = "../../transports/noise" }
 libp2p-yamux = { path = "../../muxers/yamux" }
 quickcheck = "0.9.0"
 

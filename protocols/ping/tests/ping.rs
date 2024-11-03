@@ -20,7 +20,7 @@
 
 //! Integration tests for the `Ping` network behaviour.
 
-use libp2p_core::{
+use mwc_libp2p_core::{
     Multiaddr,
     PeerId,
     identity,
@@ -28,9 +28,9 @@ use libp2p_core::{
     transport::{self, Transport},
     upgrade
 };
-use libp2p_mplex as mplex;
-use mwc_libp2p_noise as noise;
-use libp2p_ping::*;
+use mwc_libp2p_mplex as mplex;
+use mwc_mwc_libp2p_noise as noise;
+use mwc_libp2p_ping::*;
 use libp2p_swarm::{Swarm, SwarmEvent};
 use libp2p_tcp::TcpConfig;
 use libp2p_yamux as yamux;

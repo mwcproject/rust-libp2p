@@ -24,7 +24,7 @@
 //!
 //! This crate provides a `TcpConfig` and `TokioTcpConfig`, depending on
 //! the enabled features, which implement the `Transport` trait for use as a
-//! transport with `libp2p-core` or `libp2p-swarm`.
+//! transport with `mwc-libp2p-core` or `libp2p-swarm`.
 
 mod provider;
 
@@ -48,7 +48,7 @@ use futures::{
     ready,
 };
 use futures_timer::Delay;
-use libp2p_core::{
+use mwc_libp2p_core::{
     address_translation,
     multiaddr::{Multiaddr, Protocol},
     transport::{ListenerEvent, Transport, TransportError},
@@ -250,8 +250,8 @@ where
     /// the following example:
     ///
     /// ```no_run
-    /// # use libp2p_core::transport::ListenerEvent;
-    /// # use libp2p_core::{Multiaddr, Transport};
+    /// # use mwc_libp2p_core::transport::ListenerEvent;
+    /// # use mwc_libp2p_core::{Multiaddr, Transport};
     /// # use futures::stream::StreamExt;
     /// #[cfg(feature = "async-io")]
     /// #[async_std::main]

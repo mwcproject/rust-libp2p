@@ -24,7 +24,7 @@ use dns_parser::{Packet, RData};
 use futures::{prelude::*, select};
 use if_watch::{IfEvent, IfWatcher};
 use lazy_static::lazy_static;
-use libp2p_core::{multiaddr::{Multiaddr, Protocol}, PeerId};
+use mwc_libp2p_core::{multiaddr::{Multiaddr, Protocol}, PeerId};
 use log::warn;
 use socket2::{Socket, Domain, Type};
 use std::{fmt, io, net::{IpAddr, Ipv4Addr, UdpSocket, SocketAddr}, str, time::{Duration, Instant}};
@@ -62,7 +62,7 @@ lazy_static! {
 /// ```rust
 /// # use futures::prelude::*;
 /// # use futures::executor::block_on;
-/// # use libp2p_core::{identity, Multiaddr, PeerId};
+/// # use mwc_libp2p_core::{identity, Multiaddr, PeerId};
 /// # use libp2p_mdns::service::{MdnsPacket, build_query_response, build_service_discovery_response};
 /// # use std::{io, time::Duration, task::Poll};
 /// # fn main() {
@@ -592,7 +592,7 @@ mod tests {
     macro_rules! testgen {
         ($runtime_name:ident, $service_name:ty, $block_on_fn:tt) => {
     mod $runtime_name {
-        use libp2p_core::{PeerId, multihash::{Code, MultihashDigest}};
+        use mwc_libp2p_core::{PeerId, multihash::{Code, MultihashDigest}};
         use std::time::Duration;
         use crate::service::MdnsPacket;
 

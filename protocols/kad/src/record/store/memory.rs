@@ -21,7 +21,7 @@
 use super::*;
 
 use crate::kbucket;
-use libp2p_core::PeerId;
+use mwc_libp2p_core::PeerId;
 use smallvec::SmallVec;
 use std::borrow::Cow;
 use std::collections::{hash_map, hash_set, HashMap, HashSet};
@@ -215,7 +215,7 @@ impl<'a> RecordStore<'a> for MemoryStore {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use libp2p_core::multihash::{Code, Multihash};
+    use mwc_libp2p_core::multihash::{Code, Multihash};
     use quickcheck::*;
     use rand::Rng;
 

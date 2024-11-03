@@ -38,7 +38,7 @@
 //! > by default, see [`PingConfig::with_keep_alive`] for changing this behaviour.
 //!
 //! [`Swarm`]: libp2p_swarm::Swarm
-//! [`Transport`]: libp2p_core::Transport
+//! [`Transport`]: mwc_libp2p_core::Transport
 
 pub mod protocol;
 pub mod handler;
@@ -46,7 +46,7 @@ pub mod handler;
 pub use handler::{PingConfig, PingResult, PingSuccess, PingFailure};
 use handler::PingHandler;
 
-use libp2p_core::{Multiaddr, PeerId, connection::ConnectionId};
+use mwc_libp2p_core::{Multiaddr, PeerId, connection::ConnectionId};
 use libp2p_swarm::{NetworkBehaviour, NetworkBehaviourAction, PollParameters};
 use std::{collections::VecDeque, task::Context, task::Poll};
 use void::Void;

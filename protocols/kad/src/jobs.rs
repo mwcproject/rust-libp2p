@@ -62,7 +62,7 @@
 //! > out of the job to the consumer, where they can be dropped after being sent.
 
 use crate::record::{self, Record, ProviderRecord, store::RecordStore};
-use libp2p_core::PeerId;
+use mwc_libp2p_core::PeerId;
 use futures::prelude::*;
 use std::collections::HashSet;
 use std::pin::Pin;

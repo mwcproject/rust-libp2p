@@ -19,7 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 use futures::{future, prelude::*};
-use libp2p_core::{transport::Transport, upgrade};
+use mwc_libp2p_core::{transport::Transport, upgrade};
 use libp2p_deflate::DeflateConfig;
 use libp2p_tcp::TcpConfig;
 use quickcheck::{QuickCheck, RngCore, TestResult};

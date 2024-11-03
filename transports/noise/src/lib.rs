@@ -23,7 +23,7 @@
 //! > **Note**: This crate is still experimental and subject to major breaking changes
 //! >           both on the API and the wire protocol.
 //!
-//! This crate provides `libp2p_core::InboundUpgrade` and `libp2p_core::OutboundUpgrade`
+//! This crate provides `mwc_libp2p_core::InboundUpgrade` and `mwc_libp2p_core::OutboundUpgrade`
 //! implementations for various noise handshake patterns (currently `IK`, `IX`, and `XX`)
 //! over a particular choice of Diffie–Hellman key agreement (currently only X25519).
 //!
@@ -39,9 +39,9 @@
 //! Example:
 //!
 //! ```
-//! use libp2p_core::{identity, Transport, upgrade};
+//! use mwc_libp2p_core::{identity, Transport, upgrade};
 //! use libp2p_tcp::TcpConfig;
-//! use mwc_libp2p_noise::{Keypair, X25519Spec, NoiseConfig};
+//! use mwc_mwc_libp2p_noise::{Keypair, X25519Spec, NoiseConfig};
 //!
 //! # fn main() {
 //! let id_keys = identity::Keypair::generate_ed25519();
@@ -67,7 +67,7 @@ pub use protocol::{Protocol, ProtocolParams, IX, IK, XX};
 pub use protocol::{x25519::X25519, x25519_spec::X25519Spec};
 
 use futures::prelude::*;
-use libp2p_core::{identity, PeerId, UpgradeInfo, InboundUpgrade, OutboundUpgrade};
+use mwc_libp2p_core::{identity, PeerId, UpgradeInfo, InboundUpgrade, OutboundUpgrade};
 use std::pin::Pin;
 use zeroize::Zeroize;
 
@@ -83,7 +83,7 @@ pub struct NoiseConfig<P, C: Zeroize, R = ()> {
 
 impl<H, C: Zeroize, R> NoiseConfig<H, C, R> {
     /// Turn the `NoiseConfig` into an authenticated upgrade for use
-    /// with a [`Network`](libp2p_core::Network).
+    /// with a [`Network`](mwc_libp2p_core::Network).
     pub fn into_authenticated(self) -> NoiseAuthenticated<H, C, R> {
         NoiseAuthenticated { config: self }
     }
@@ -318,8 +318,8 @@ where
 ///
 /// On success, the upgrade yields the [`PeerId`] obtained from the
 /// `RemoteIdentity`. The output of this upgrade is thus directly suitable
-/// for creating an [`authenticated`](libp2p_core::transport::upgrade::Authenticate)
-/// transport for use with a [`Network`](libp2p_core::Network).
+/// for creating an [`authenticated`](mwc_libp2p_core::transport::upgrade::Authenticate)
+/// transport for use with a [`Network`](mwc_libp2p_core::Network).
 #[derive(Clone)]
 pub struct NoiseAuthenticated<P, C: Zeroize, R> {
     config: NoiseConfig<P, C, R>

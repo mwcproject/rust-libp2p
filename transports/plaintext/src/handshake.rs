@@ -25,7 +25,7 @@ use crate::structs_proto::Exchange;
 use bytes::{Bytes, BytesMut};
 use futures::prelude::*;
 use asynchronous_codec::{Framed, FramedParts};
-use libp2p_core::{PublicKey, PeerId};
+use mwc_libp2p_core::{PublicKey, PeerId};
 use log::{debug, trace};
 use prost::Message;
 use std::io::{Error as IoError, ErrorKind as IoErrorKind};

@@ -1,5 +1,5 @@
 [package]
-name = "mwc-libp2p-noise"
+name = "mwc-mwc-libp2p-noise"
 description = "Cryptographic handshake protocol using the noise framework."
 version = "0.29.1"
 authors = ["Parity Technologies <admin@parity.io>"]
@@ -12,7 +12,7 @@ bytes = "1"
 curve25519-dalek = "3.0.0"
 futures = "0.3.1"
 lazy_static = "1.2"
-libp2p-core = { version = "0.27.0", path = "../../core" }
+mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
 log = "0.4"
 prost = "0.7"
 rand = "0.8.5"

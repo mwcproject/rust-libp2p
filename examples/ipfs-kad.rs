@@ -24,20 +24,20 @@
 //! peer ID will be generated randomly.
 
 use async_std::task;
-use libp2p::{
+use mwc_libp2p::{
     Swarm,
     PeerId,
     identity,
     build_development_transport
 };
-use libp2p::kad::{
+use mwc_libp2p::kad::{
     Kademlia,
     KademliaConfig,
     KademliaEvent,
     GetClosestPeersError,
     QueryResult,
 };
-use libp2p::kad::record::store::MemoryStore;
+use mwc_libp2p::kad::record::store::MemoryStore;
 use std::{env, error::Error, time::Duration};
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -58,11 +58,11 @@ fn main() -> Result<(), Box<dyn Error>> {
         let store = MemoryStore::new(local_peer_id.clone());
         let mut behaviour = Kademlia::with_config(local_peer_id.clone(), store, cfg);
 
-        // TODO: the /dnsaddr/ scheme is not supported (https://github.com/libp2p/rust-libp2p/issues/967)
-        /*behaviour.add_address(&"QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN".parse().unwrap(), "/dnsaddr/bootstrap.libp2p.io".parse().unwrap());
-        behaviour.add_address(&"QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa".parse().unwrap(), "/dnsaddr/bootstrap.libp2p.io".parse().unwrap());
-        behaviour.add_address(&"QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb".parse().unwrap(), "/dnsaddr/bootstrap.libp2p.io".parse().unwrap());
-        behaviour.add_address(&"QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt".parse().unwrap(), "/dnsaddr/bootstrap.libp2p.io".parse().unwrap());*/
+        // TODO: the /dnsaddr/ scheme is not supported (https://github.com/mwc_libp2p/rust-mwc_libp2p/issues/967)
+        /*behaviour.add_address(&"QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN".parse().unwrap(), "/dnsaddr/bootstrap.mwc_libp2p.io".parse().unwrap());
+        behaviour.add_address(&"QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa".parse().unwrap(), "/dnsaddr/bootstrap.mwc_libp2p.io".parse().unwrap());
+        behaviour.add_address(&"QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb".parse().unwrap(), "/dnsaddr/bootstrap.mwc_libp2p.io".parse().unwrap());
+        behaviour.add_address(&"QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt".parse().unwrap(), "/dnsaddr/bootstrap.mwc_libp2p.io".parse().unwrap());*/
 
         // The only address that currently works.
         behaviour.add_address(&"QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ".parse()?, "/ip4/104.131.131.82/tcp/4001".parse()?);

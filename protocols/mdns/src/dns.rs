@@ -21,7 +21,7 @@
 //! (M)DNS encoding and decoding on top of the `dns_parser` library.
 
 use crate::{META_QUERY_SERVICE, SERVICE_NAME};
-use libp2p_core::{Multiaddr, PeerId};
+use mwc_libp2p_core::{Multiaddr, PeerId};
 use std::{borrow::Cow, cmp, error, fmt, str, time::Duration};
 
 /// Maximum size of a DNS label as per RFC1035.
@@ -403,7 +403,7 @@ impl error::Error for MdnsResponseError {}
 mod tests {
     use super::*;
     use dns_parser::Packet;
-    use libp2p_core::identity;
+    use mwc_libp2p_core::identity;
     use std::time::Duration;
 
     #[test]

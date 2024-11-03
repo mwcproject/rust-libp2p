@@ -512,7 +512,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use libp2p_core::PeerId;
+    use mwc_libp2p_core::PeerId;
     use quickcheck::*;
     use rand::Rng;
 

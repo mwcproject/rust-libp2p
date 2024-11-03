@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-//! A basic example demonstrating some core APIs and concepts of libp2p.
+//! A basic example demonstrating some core APIs and concepts of mwc_libp2p.
 //!
 //! In the first terminal window, run:
 //!
@@ -40,7 +40,7 @@
 
 use async_std::task;
 use futures::{future, prelude::*};
-use libp2p::{identity, PeerId, ping::{Ping, PingConfig}, Swarm};
+use mwc_libp2p::{identity, PeerId, ping::{Ping, PingConfig}, Swarm};
 use std::{error::Error, task::{Context, Poll}};
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -52,7 +52,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!("Local peer id: {:?}", peer_id);
 
     // Create a transport.
-    let transport = libp2p::build_development_transport(id_keys)?;
+    let transport = mwc_libp2p::build_development_transport(id_keys)?;
 
     // Create a ping network behaviour.
     //

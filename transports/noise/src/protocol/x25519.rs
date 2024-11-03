@@ -26,8 +26,8 @@
 use crate::{NoiseConfig, NoiseError, Protocol, ProtocolParams};
 use curve25519_dalek::edwards::CompressedEdwardsY;
 use lazy_static::lazy_static;
-use libp2p_core::UpgradeInfo;
-use libp2p_core::{identity, identity::ed25519};
+use mwc_libp2p_core::UpgradeInfo;
+use mwc_libp2p_core::{identity, identity::ed25519};
 use rand::Rng;
 use sha2::{Sha512, Digest};
 use x25519_dalek::{X25519_BASEPOINT_BYTES, x25519};
@@ -260,7 +260,7 @@ impl snow::types::Dh for Keypair<X25519> {
 
 #[cfg(test)]
 mod tests {
-    use libp2p_core::identity::ed25519;
+    use mwc_libp2p_core::identity::ed25519;
     use quickcheck::*;
     use sodiumoxide::crypto::sign;
     use std::os::raw::c_int;

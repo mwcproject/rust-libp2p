@@ -42,7 +42,7 @@ use std::{collections::VecDeque, fmt, pin::Pin};
 ///
 /// ```no_run
 /// use futures::prelude::*;
-/// use libp2p_core::connection::{ListenersEvent, ListenersStream};
+/// use mwc_libp2p_core::connection::{ListenersEvent, ListenersStream};
 ///
 /// let mut listeners = ListenersStream::new(libp2p_tcp::TcpConfig::new());
 ///

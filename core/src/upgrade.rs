@@ -97,7 +97,7 @@ pub use self::{
 /// # Example
 ///
 /// ```
-/// use libp2p_core::ProtocolName;
+/// use mwc_libp2p_core::ProtocolName;
 ///
 /// enum MyProtocolName {
 ///     Version1,

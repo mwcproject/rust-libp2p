@@ -33,7 +33,7 @@ use bytes::BytesMut;
 use futures::future;
 use futures::prelude::*;
 use asynchronous_codec::{Decoder, Encoder, Framed};
-use libp2p_core::{
+use mwc_libp2p_core::{
     identity::PublicKey, InboundUpgrade, OutboundUpgrade, PeerId, ProtocolName, UpgradeInfo,
 };
 use log::{debug, warn};
@@ -554,7 +554,7 @@ mod tests {
     use crate::config::GossipsubConfig;
     use crate::Gossipsub;
     use crate::IdentTopic as Topic;
-    use libp2p_core::identity::Keypair;
+    use mwc_libp2p_core::identity::Keypair;
     use quickcheck::*;
     use rand::Rng;
 

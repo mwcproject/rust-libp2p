@@ -36,8 +36,8 @@ use crate::upgrade::{
     UpgradeInfoSend
 };
 use futures::{future::BoxFuture, prelude::*};
-use libp2p_core::{ConnectedPoint, Multiaddr, PeerId};
-use libp2p_core::upgrade::{self, ProtocolName, UpgradeError, NegotiationError, ProtocolError};
+use mwc_libp2p_core::{ConnectedPoint, Multiaddr, PeerId};
+use mwc_libp2p_core::upgrade::{self, ProtocolName, UpgradeError, NegotiationError, ProtocolError};
 use rand::Rng;
 use std::{
     cmp,

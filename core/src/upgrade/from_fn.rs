@@ -28,8 +28,8 @@ use std::iter;
 /// # Example
 ///
 /// ```
-/// # use libp2p_core::transport::{Transport, MemoryTransport};
-/// # use libp2p_core::upgrade;
+/// # use mwc_libp2p_core::transport::{Transport, MemoryTransport};
+/// # use mwc_libp2p_core::upgrade;
 /// # use std::io;
 /// let _transport = MemoryTransport::default()
 ///     .and_then(move |out, cp| {

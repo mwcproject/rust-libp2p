@@ -12,7 +12,7 @@ categories = ["network-programming", "asynchronous"]
 [dependencies]
 either = "1.6.0"
 futures = "0.3.1"
-libp2p-core = { version = "0.27.0", path = "../core" }
+mwc-libp2p-core = { version = "0.27.0", path = "../core" }
 log = "0.4"
 rand = "0.7"
 smallvec = "1.0"
@@ -20,7 +20,7 @@ wasm-timer = "0.2"
 void = "1"
 
 [dev-dependencies]
-libp2p-mplex = { path = "../muxers/mplex" }
-mwc-libp2p-noise = { path = "../transports/noise" }
+mwc-libp2p-mplex = { path = "../muxers/mplex" }
+mwc-mwc-libp2p-noise = { path = "../transports/noise" }
 quickcheck = "0.9.0"
 rand = "0.7.2"

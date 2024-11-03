@@ -28,7 +28,7 @@ use crate::{ALPHA_VALUE, K_VALUE};
 use crate::kbucket::{Key, KeyBytes};
 use either::Either;
 use fnv::FnvHashMap;
-use libp2p_core::PeerId;
+use mwc_libp2p_core::PeerId;
 use std::{time::Duration, num::NonZeroUsize};
 use wasm_timer::Instant;
 

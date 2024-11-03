@@ -22,7 +22,7 @@ use futures_rustls::{webpki, client, server};
 use crate::{error::Error, tls};
 use either::Either;
 use futures::{future::BoxFuture, prelude::*, ready, stream::BoxStream};
-use libp2p_core::{
+use mwc_libp2p_core::{
     Transport,
     either::EitherOutput,
     multiaddr::{Protocol, Multiaddr},

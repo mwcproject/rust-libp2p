@@ -51,7 +51,7 @@ pub use crate::upgrade::{
     UpgradeInfoSend,
 };
 
-use libp2p_core::{
+use mwc_libp2p_core::{
     ConnectedPoint,
     Multiaddr,
     PeerId,
@@ -78,13 +78,13 @@ pub use select::{IntoProtocolsHandlerSelect, ProtocolsHandlerSelect};
 ///
 ///   1. Dialing by initiating a new outbound substream. In order to do so,
 ///      [`ProtocolsHandler::poll()`] must return an [`ProtocolsHandlerEvent::OutboundSubstreamRequest`],
-///      providing an instance of [`libp2p_core::upgrade::OutboundUpgrade`] that is used to negotiate the
+///      providing an instance of [`mwc_libp2p_core::upgrade::OutboundUpgrade`] that is used to negotiate the
 ///      protocol(s). Upon success, [`ProtocolsHandler::inject_fully_negotiated_outbound`]
 ///      is called with the final output of the upgrade.
 ///
 ///   2. Listening by accepting a new inbound substream. When a new inbound substream
 ///      is created on a connection, [`ProtocolsHandler::listen_protocol`] is called
-///      to obtain an instance of [`libp2p_core::upgrade::InboundUpgrade`] that is used to
+///      to obtain an instance of [`mwc_libp2p_core::upgrade::InboundUpgrade`] that is used to
 ///      negotiate the protocol(s). Upon success,
 ///      [`ProtocolsHandler::inject_fully_negotiated_inbound`] is called with the final
 ///      output of the upgrade.
@@ -115,7 +115,7 @@ pub trait ProtocolsHandler: Send + 'static {
     /// The type of additional information passed to an `OutboundSubstreamRequest`.
     type OutboundOpenInfo: Send + 'static;
 
-    /// The [`InboundUpgrade`](libp2p_core::upgrade::InboundUpgrade) to apply on inbound
+    /// The [`InboundUpgrade`](mwc_libp2p_core::upgrade::InboundUpgrade) to apply on inbound
     /// substreams to negotiate the desired protocols.
     ///
     /// > **Note**: The returned `InboundUpgrade` should always accept all the generally

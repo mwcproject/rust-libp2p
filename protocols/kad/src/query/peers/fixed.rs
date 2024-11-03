@@ -21,7 +21,7 @@
 use super::*;
 
 use fnv::FnvHashMap;
-use libp2p_core::PeerId;
+use mwc_libp2p_core::PeerId;
 use std::{vec, collections::hash_map::Entry, num::NonZeroUsize};
 
 /// A peer iterator for a fixed set of peers.

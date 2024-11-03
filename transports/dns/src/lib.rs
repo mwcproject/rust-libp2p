@@ -34,7 +34,7 @@
 //!
 
 use futures::{prelude::*, channel::oneshot, future::BoxFuture};
-use libp2p_core::{
+use mwc_libp2p_core::{
     Transport,
     multiaddr::{Protocol, Multiaddr},
     transport::{TransportError, ListenerEvent}
@@ -256,7 +256,7 @@ where TErr: error::Error + 'static
 mod tests {
     use super::DnsConfig;
     use futures::{future::BoxFuture, prelude::*, stream::BoxStream};
-    use libp2p_core::{
+    use mwc_libp2p_core::{
         Transport,
         multiaddr::{Protocol, Multiaddr},
         transport::ListenerEvent,

@@ -21,7 +21,7 @@
 use async_trait::async_trait;
 use bytes::{Bytes, BytesMut};
 use futures::prelude::*;
-use libp2p_core::ProtocolName;
+use mwc_libp2p_core::ProtocolName;
 use minicbor::{Encode, Decode};
 use std::io;
 use super::RequestResponseCodec;

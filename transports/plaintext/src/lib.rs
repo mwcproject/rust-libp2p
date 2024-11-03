@@ -24,7 +24,7 @@ use bytes::Bytes;
 use futures::future::{self, Ready};
 use futures::prelude::*;
 use futures::future::BoxFuture;
-use libp2p_core::{
+use mwc_libp2p_core::{
     identity,
     InboundUpgrade,
     OutboundUpgrade,
@@ -46,21 +46,21 @@ mod structs_proto {
 /// `PlainText1Config` is an insecure connection handshake for testing purposes only.
 ///
 /// > **Note**: Given that `PlainText1Config` has no notion of exchanging peer identity information it is not compatible
-/// > with the `libp2p_core::transport::upgrade::Builder` pattern. See
+/// > with the `mwc_libp2p_core::transport::upgrade::Builder` pattern. See
 /// > [`PlainText2Config`](struct.PlainText2Config.html) if compatibility is needed. Even though not compatible with the
 /// > Builder pattern one can still do an upgrade *manually*:
 ///
 /// ```
-/// # use libp2p_core::transport::{ Transport, memory::MemoryTransport };
-/// # use libp2p_plaintext::PlainText1Config;
+/// # use mwc_libp2p_core::transport::{ Transport, memory::MemoryTransport };
+/// # use mwc_libp2p_plaintext::PlainText1Config;
 /// #
 /// MemoryTransport::default()
 ///   .and_then(move |io, endpoint| {
-///     libp2p_core::upgrade::apply(
+///     mwc_libp2p_core::upgrade::apply(
 ///       io,
 ///       PlainText1Config{},
 ///       endpoint,
-///       libp2p_core::transport::upgrade::Version::V1,
+///       mwc_libp2p_core::transport::upgrade::Version::V1,
 ///     )
 ///   })
 ///   .map(|plaintext, _endpoint| {

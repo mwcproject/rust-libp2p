@@ -19,7 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 use uint::*;
-use libp2p_core::{PeerId, multihash::Multihash};
+use mwc_libp2p_core::{PeerId, multihash::Multihash};
 use sha2::{Digest, Sha256};
 use sha2::digest::generic_array::{GenericArray, typenum::U32};
 use std::borrow::Borrow;
@@ -202,7 +202,7 @@ impl Distance {
 mod tests {
     use super::*;
     use quickcheck::*;
-    use libp2p_core::multihash::Code;
+    use mwc_libp2p_core::multihash::Code;
     use rand::Rng;
 
     impl Arbitrary for Key<PeerId> {

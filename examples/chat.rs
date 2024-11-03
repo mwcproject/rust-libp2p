@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-//! A basic chat application demonstrating libp2p and the mDNS and floodsub protocols.
+//! A basic chat application demonstrating mwc_libp2p and the mDNS and floodsub protocols.
 //!
 //! Using two terminal windows, start two instances. If you local network allows mDNS,
 //! they will automatically connect. Type a message in either terminal and hit return: the
@@ -51,7 +51,7 @@
 
 use async_std::{io, task};
 use futures::{future, prelude::*};
-use libp2p::{
+use mwc_libp2p::{
     Multiaddr,
     PeerId,
     Swarm,
@@ -72,13 +72,13 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!("Local peer id: {:?}", local_peer_id);
 
     // Set up a an encrypted DNS-enabled TCP Transport over the Mplex and Yamux protocols
-    let transport = libp2p::build_development_transport(local_key)?;
+    let transport = mwc_libp2p::build_development_transport(local_key)?;
 
     // Create a Floodsub topic
     let floodsub_topic = floodsub::Topic::new("chat");
 
     // We create a custom network behaviour that combines floodsub and mDNS.
-    // In the future, we want to improve libp2p to make this easier to do.
+    // In the future, we want to improve mwc_libp2p to make this easier to do.
     // Use the derive to generate delegating NetworkBehaviour impl and require the
     // NetworkBehaviourEventProcess implementations below.
     #[derive(NetworkBehaviour)]

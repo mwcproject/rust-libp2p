@@ -250,7 +250,7 @@ mod tests {
 
     use futures::executor::block_on;
     use futures::future::poll_fn;
-    use libp2p_core::upgrade::DeniedUpgrade;
+    use mwc_libp2p_core::upgrade::DeniedUpgrade;
     use void::Void;
 
     #[test]

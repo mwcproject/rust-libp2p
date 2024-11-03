@@ -20,8 +20,8 @@
 
 //! Error types that can result from gossipsub.
 
-use libp2p_core::identity::error::SigningError;
-use libp2p_core::upgrade::ProtocolError;
+use mwc_libp2p_core::identity::error::SigningError;
+use mwc_libp2p_core::upgrade::ProtocolError;
 use std::fmt;
 
 /// Error associated with publishing a gossipsub message.

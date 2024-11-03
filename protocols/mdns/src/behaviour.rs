@@ -21,7 +21,7 @@
 use crate::service::{MdnsPacket, MdnsService, build_query_response, build_service_discovery_response};
 use async_io::Timer;
 use futures::prelude::*;
-use libp2p_core::{
+use mwc_libp2p_core::{
     Multiaddr,
     PeerId,
     address_translation,

@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-use libp2p_core::Multiaddr;
+use mwc_libp2p_core::Multiaddr;
 use smallvec::SmallVec;
 use std::{collections::VecDeque, cmp::Ordering, num::NonZeroUsize};
 use std::ops::{Add, Sub};
@@ -323,7 +323,7 @@ fn isort(xs: &mut [AddressRecord]) {
 
 #[cfg(test)]
 mod tests {
-    use libp2p_core::multiaddr::{Multiaddr, Protocol};
+    use mwc_libp2p_core::multiaddr::{Multiaddr, Protocol};
     use quickcheck::*;
     use rand::Rng;
     use std::num::{NonZeroUsize, NonZeroU8};

@@ -18,13 +18,13 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-//! [libp2p-noise-spec] compliant Noise protocols based on X25519.
+//! [mwc-libp2p-noise-spec] compliant Noise protocols based on X25519.
 //!
-//! [libp2p-noise-spec]: https://github.com/libp2p/specs/tree/master/noise
+//! [mwc-libp2p-noise-spec]: https://github.com/libp2p/specs/tree/master/noise
 
 use crate::{NoiseConfig, NoiseError, Protocol, ProtocolParams};
-use libp2p_core::UpgradeInfo;
-use libp2p_core::identity;
+use mwc_libp2p_core::UpgradeInfo;
+use mwc_libp2p_core::identity;
 use rand::Rng;
 use x25519_dalek::{X25519_BASEPOINT_BYTES, x25519};
 use zeroize::Zeroize;

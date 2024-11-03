@@ -1,5 +1,5 @@
 [package]
-name = "libp2p-mplex"
+name = "mwc-libp2p-mplex"
 edition = "2018"
 description = "Mplex multiplexing protocol for libp2p"
 version = "0.27.1"
@@ -13,7 +13,7 @@ categories = ["network-programming", "asynchronous"]
 bytes = "1"
 futures = "0.3.1"
 asynchronous-codec = "0.6"
-libp2p-core = { version = "0.27.0", path = "../../core" }
+mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
 log = "0.4"
 nohash-hasher = "0.2"
 parking_lot = "0.11"
@@ -27,7 +27,7 @@ criterion = "0.3"
 env_logger = "0.8"
 futures = "0.3"
 libp2p-tcp = { path = "../../transports/tcp" }
-libp2p-plaintext = { path = "../../transports/plaintext" }
+mwc-libp2p-plaintext = { path = "../../transports/plaintext" }
 quickcheck = "0.9"
 rand = "0.7"
 

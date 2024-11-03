@@ -19,7 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use libp2p_core::{identity, PeerId};
+use mwc_libp2p_core::{identity, PeerId};
 
 fn from_bytes(c: &mut Criterion) {
     let peer_id_bytes = identity::Keypair::generate_ed25519()

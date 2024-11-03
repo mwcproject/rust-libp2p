@@ -20,13 +20,13 @@
 
 use futures::io::{AsyncWriteExt, AsyncReadExt};
 use futures::stream::TryStreamExt;
-use libp2p_core::{
+use mwc_libp2p_core::{
     identity,
     multiaddr::Multiaddr,
     transport::{Transport, ListenerEvent},
     upgrade,
 };
-use libp2p_plaintext::PlainText2Config;
+use mwc_libp2p_plaintext::PlainText2Config;
 use log::debug;
 use quickcheck::QuickCheck;
 
@@ -45,24 +45,24 @@ fn variable_msg_length() {
         let client_id_public = client_id.public();
 
         futures::executor::block_on(async {
-            let server_transport = libp2p_core::transport::MemoryTransport{}.and_then(
+            let server_transport = mwc_libp2p_core::transport::MemoryTransport{}.and_then(
                 move |output, endpoint| {
                     upgrade::apply(
                         output,
                         PlainText2Config{local_public_key: server_id_public},
                         endpoint,
-                        libp2p_core::upgrade::Version::V1,
+                        mwc_libp2p_core::upgrade::Version::V1,
                     )
                 }
             );
 
-            let client_transport = libp2p_core::transport::MemoryTransport{}.and_then(
+            let client_transport = mwc_libp2p_core::transport::MemoryTransport{}.and_then(
                 move |output, endpoint| {
                     upgrade::apply(
                         output,
                         PlainText2Config{local_public_key: client_id_public},
                         endpoint,
-                        libp2p_core::upgrade::Version::V1,
+                        mwc_libp2p_core::upgrade::Version::V1,
                     )
                 }
             );

@@ -20,7 +20,7 @@
 
 use crate::rpc_proto;
 use crate::topic::Topic;
-use libp2p_core::{InboundUpgrade, OutboundUpgrade, UpgradeInfo, PeerId, upgrade};
+use mwc_libp2p_core::{InboundUpgrade, OutboundUpgrade, UpgradeInfo, PeerId, upgrade};
 use prost::Message;
 use std::{error, fmt, io, iter, pin::Pin};
 use futures::{Future, io::{AsyncRead, AsyncWrite}};

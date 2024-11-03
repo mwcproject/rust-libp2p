@@ -20,7 +20,7 @@
 
 use bytes::{BufMut, Bytes, BytesMut};
 use asynchronous_codec::{Decoder, Encoder};
-use libp2p_core::Endpoint;
+use mwc_libp2p_core::Endpoint;
 use std::{fmt, hash::{Hash, Hasher}, io, mem};
 use unsigned_varint::{codec, encode};
 

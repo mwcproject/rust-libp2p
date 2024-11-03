@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-use libp2p_core::Multiaddr;
+use mwc_libp2p_core::Multiaddr;
 use crate::tls;
 use std::{error, fmt};
 

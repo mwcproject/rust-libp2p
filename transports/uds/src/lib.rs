@@ -36,7 +36,7 @@
 
 use futures::{prelude::*, future::{BoxFuture, Ready}};
 use futures::stream::BoxStream;
-use libp2p_core::{
+use mwc_libp2p_core::{
     Transport,
     multiaddr::{Protocol, Multiaddr},
     transport::{ListenerEvent, TransportError}
@@ -164,7 +164,7 @@ mod tests {
     use super::{multiaddr_to_path, UdsConfig};
     use futures::{channel::oneshot, prelude::*};
     use std::{self, borrow::Cow, path::Path};
-    use libp2p_core::{Transport, multiaddr::{Protocol, Multiaddr}};
+    use mwc_libp2p_core::{Transport, multiaddr::{Protocol, Multiaddr}};
     use tempfile;
 
     #[test]
