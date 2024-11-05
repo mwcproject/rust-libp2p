@@ -2,7 +2,7 @@
 name = "mwc-libp2p"
 edition = "2018"
 description = "Peer-to-peer networking library"
-version = "0.35.2"
+version = "0.35.3"
 authors = ["Parity Technologies <admin@parity.io>"]
 license = "MIT"
 repository = "https://github.com/mwcproject/rust-libp2p"
