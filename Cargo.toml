@@ -61,7 +61,7 @@ atomic = "0.5.0"
 bytes = "1"
 futures = "0.3.1"
 lazy_static = "1.2"
-mwc-libp2p-core = { version = "0.27.1", path = "core" }
+mwc-libp2p-core = { version = "0.27.2", path = "core" }
 mwc-libp2p-floodsub = { version = "0.27.0", path = "protocols/floodsub", optional = true }
 mwc-libp2p-gossipsub = { version = "0.28.0", path = "./protocols/gossipsub", optional = true }
 mwc-libp2p-identify = { version = "0.27.0", path = "protocols/identify", optional = true }
