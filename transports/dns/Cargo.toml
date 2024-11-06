@@ -2,7 +2,7 @@
 name = "mwc-libp2p-dns"
 edition = "2018"
 description = "DNS transport implementation for libp2p"
-version = "0.27.0"
+version = "0.27.1"
 authors = ["Parity Technologies <admin@parity.io>"]
 license = "MIT"
 repository = "https://github.com/mwcproject/rust-libp2p"
@@ -10,6 +10,6 @@ keywords = ["peer-to-peer", "libp2p", "networking"]
 categories = ["network-programming", "asynchronous"]
 
 [dependencies]
-mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
+mwc-libp2p-core = { version = "0.27.3", path = "../../core" }
 log = "0.4.1"
 futures = "0.3.1"

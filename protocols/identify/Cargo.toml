@@ -2,7 +2,7 @@
 name = "mwc-libp2p-identify"
 edition = "2018"
 description = "Nodes identifcation protocol for libp2p"
-version = "0.27.0"
+version = "0.27.1"
 authors = ["Parity Technologies <admin@parity.io>"]
 license = "MIT"
 repository = "https://github.com/mwcproject/rust-libp2p"
@@ -11,8 +11,8 @@ categories = ["network-programming", "asynchronous"]
 
 [dependencies]
 futures = "0.3.1"
-mwc-libp2p-core = { version = "0.27.0", path = "../../core" }
-mwc-libp2p-swarm = { version = "0.27.0", path = "../../swarm" }
+mwc-libp2p-core = { version = "0.27.3", path = "../../core" }
+mwc-libp2p-swarm = { version = "0.27.1", path = "../../swarm" }
 log = "0.4.1"
 prost = "0.7"
 smallvec = "1.0"
